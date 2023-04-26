@@ -33,7 +33,8 @@ export class EmpresaComponent implements OnInit {
     switch (this.action) {
       case 'create':
         this.empresaService.saveEmpresa(this.form.value).then(resp => {
-          this.router.navigate(['empresa'])
+          this.switchAction();
+          this.getEmpresas();
         }).catch(error => {
           this.switchAction();
         });

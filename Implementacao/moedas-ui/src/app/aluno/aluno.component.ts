@@ -19,7 +19,12 @@ export class AlunoComponent implements OnInit {
   title: string = '';
   form: FormGroup = new FormGroup({
     nome: new FormControl({ value: '', disabled: this.action == 'view' }),
-    vantagens: new FormControl({ value: '', disabled: this.action == 'view' })
+    curso: new FormControl({ value: '', disabled: this.action == 'view' }),
+    instituicaoEnsino: new FormControl({ value: '', disabled: this.action == 'view' }),
+    rg: new FormControl({ value: '', disabled: this.action == 'view' }),
+    cpf: new FormControl({ value: '', disabled: this.action == 'view' }),
+    email: new FormControl({ value: '', disabled: this.action == 'view' }),
+    endereco: new FormControl({ value: '', disabled: this.action == 'view' })
   });
 
   constructor(private alunoService: AlunoService,
@@ -33,7 +38,8 @@ export class AlunoComponent implements OnInit {
     switch (this.action) {
       case 'create':
         this.alunoService.saveAluno(this.form.value).then(resp => {
-          this.router.navigate(['aluno'])
+          this.switchAction();
+          this.getAlunos();
         }).catch(error => {
           this.switchAction();
         });
