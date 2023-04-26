@@ -1,1 +1,69 @@
-<p>aluno works!</p>
+<div class="p-5" *ngIf="!showAction">
+    <div class="d-flex justify-content-end">
+        <button type="button" class="btn btn-primary" (click)="setAction('create')">+ Novo
+            Aluno</button>
+    </div>
+    <table class="table table-striped mt-3">
+        <thead>
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Email</th>
+                <th scope="col">Instituição</th>
+                <th scope="col">Curso</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let aluno of alunos">
+                <td>{{aluno.nome}}</td>
+                <td>{{aluno.email}}</td>
+                <td>{{aluno.instituicaoEnsino}}</td>
+                <td>{{aluno.curso}}</td>
+                <td>
+                    <button type="button" class="btn btn-primary m-1" (click)="setAction('edit', aluno)">Editar</button>
+                    <button type="button" class="btn btn-danger m-1" (click)="deletar(aluno)">Deletar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div *ngIf="showAction" class="p-5 d-flex justify-content-center align-items-center">
+    <div class="card col-8">
+        <h5 class="card-header">{{title}}</h5>
+        <div class="card-body">
+            <form [formGroup]="form">
+                <label for="nome" class="form-label">Nome</label>
+                <input type="text" id="nome" class="form-control" aria-labelledby="nomeInput"
+                    [disabled]="action == 'view'" formControlName="nome" [value]="alunoSelecionado?.nome">
+                <label for="email" class="form-label">Email</label>
+                <input type="text" id="email" class="form-control" aria-labelledby="emailInput"
+                    [disabled]="action == 'view'" formControlName="email"
+                    [value]="alunoSelecionado?.email">
+                <label for="cpf" class="form-label">CPF</label>
+                <input type="text" id="cpf" class="form-control" aria-labelledby="cpfInput"
+                    [disabled]="action == 'view'" formControlName="cpf"
+                    [value]="alunoSelecionado?.cpf">
+                <label for="rg" class="form-label">RG</label>
+                <input type="text" id="rg" class="form-control" aria-labelledby="rgInput"
+                    [disabled]="action == 'view'" formControlName="rg"
+                    [value]="alunoSelecionado?.rg">
+                <label for="endereco" class="form-label">Endereço</label>
+                <input type="text" id="endereco" class="form-control" aria-labelledby="enderecoInput"
+                    [disabled]="action == 'view'" formControlName="endereco"
+                    [value]="alunoSelecionado?.endereco">
+                <label for="instituicaoEnsino" class="form-label">Instituição de Ensino</label>
+                <input type="text" id="instituicaoEnsino" class="form-control" aria-labelledby="instituicaoEnsinoInput"
+                    [disabled]="action == 'view'" formControlName="instituicaoEnsino"
+                    [value]="alunoSelecionado?.instituicaoEnsino">
+                <label for="curso" class="form-label">Curso</label>
+                <input type="text" id="curso" class="form-control" aria-labelledby="cursoInput"
+                    [disabled]="action == 'view'" formControlName="curso"
+                    [value]="alunoSelecionado?.curso">
+            </form>
+            <div class="mt-2">
+                <button type="button" class="btn btn-secondary" (click)="switchAction()">Fechar</button>
+                <button type="button" class="btn btn-primary ms-1" (click)="salvar()">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>

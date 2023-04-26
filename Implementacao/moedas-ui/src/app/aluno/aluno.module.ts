@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { AlunoRoutingModule } from './aluno-routing.module';
 import { AlunoComponent } from './aluno.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +12,9 @@ import { AlunoComponent } from './aluno.component';
   ],
   imports: [
     CommonModule,
-    AlunoRoutingModule
+    AlunoRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AlunoModule { }
