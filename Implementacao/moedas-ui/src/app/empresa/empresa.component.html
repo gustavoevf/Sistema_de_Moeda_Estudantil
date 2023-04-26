@@ -32,9 +32,11 @@
                 <input type="text" id="nome" class="form-control" aria-labelledby="nomeInput"
                     [disabled]="action == 'view'" formControlName="nome" [value]="empresaSelecionada?.nome">
                 <label for="vantagens" class="form-label">Vantagens</label>
-                <input type="text" id="vantagens" class="form-control" aria-labelledby="vantagensInput"
-                    [disabled]="action == 'view'" formControlName="vantagens"
-                    [value]="empresaSelecionada?.vantagens">
+                <select id="vantagens" name="vantagens" class="form-select form-control" formControlName="vantagens" multiple aria-label="multiple select example">
+                    <option value="Desconto em produtos">Desconto em produtos</option>
+                    <option value="Cursos gratuitos">Cursos gratuitos</option>
+                    <option value="Bolsa de estudos">Bolsa de estudos</option>
+                  </select>
             </form>
             <div class="mt-2">
                 <button type="button" class="btn btn-secondary" (click)="switchAction()">Fechar</button>

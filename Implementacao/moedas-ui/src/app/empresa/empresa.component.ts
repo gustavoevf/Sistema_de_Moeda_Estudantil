@@ -32,7 +32,7 @@ export class EmpresaComponent implements OnInit {
   salvar() {
     switch (this.action) {
       case 'create':
-        this.empresaService.saveEmpresa(this.form.value).then(resp => {
+        this.empresaService.saveEmpresa({...this.form.value, vantagens: this.form.controls['vantagens'].value.toString()}).then(resp => {
           this.switchAction();
           this.getEmpresas();
         }).catch(error => {
@@ -40,7 +40,7 @@ export class EmpresaComponent implements OnInit {
         });
         break;
       case 'edit':
-        this.empresaService.updateEmpresa(this.form.value, this.empresaSelecionada.id).then(resp => {
+        this.empresaService.updateEmpresa({...this.form.value, vantagens: this.form.controls['vantagens'].value.toString()}, this.empresaSelecionada.id).then(resp => {
           this.getEmpresas();
           this.switchAction();
         }).catch(error => {
