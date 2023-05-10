@@ -7,10 +7,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginModule } from './login/login.module';
 import { AlunoModule } from './aluno/aluno.module';
 import { EmpresaModule } from './empresa/empresa.module';
+import { HeaderComponent } from './shared/components/header/header.component';
+import { TransacoesModule } from './transacoes/transacoes.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -18,7 +21,8 @@ import { EmpresaModule } from './empresa/empresa.module';
     HttpClientModule,
     LoginModule,
     AlunoModule,
-    EmpresaModule
+    EmpresaModule,
+    TransacoesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
