@@ -6,5 +6,8 @@ export interface AlunoModel {
     rg: string,
     endereco: string,
     instituicaoEnsino: string,
-    curso: string
+    curso: string,
+    login: string,
+    senha: string,
+    valorCarteira: number
 }

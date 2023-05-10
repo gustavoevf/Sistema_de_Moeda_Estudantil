@@ -37,7 +37,7 @@ export class AlunoComponent implements OnInit {
   salvar() {
     switch (this.action) {
       case 'create':
-        this.alunoService.saveAluno(this.form.value).then(resp => {
+        this.alunoService.saveAluno({...this.form.value, login: this.form.controls['nome']}).then(resp => {
           this.switchAction();
           this.getAlunos();
         }).catch(error => {
@@ -45,7 +45,7 @@ export class AlunoComponent implements OnInit {
         });
         break;
       case 'edit':
-        this.alunoService.updateAluno(this.form.value, this.alunoSelecionado.id).then(resp => {
+        this.alunoService.updateAluno({...this.form.value, login: this.form.controls['nome']}, this.alunoSelecionado.id).then(resp => {
           this.getAlunos();
           this.switchAction();
         }).catch(error => {

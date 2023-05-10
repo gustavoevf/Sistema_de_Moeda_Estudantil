@@ -1,5 +1,8 @@
 export interface ProfessorModel {
     id: string,
     cpf: string,
-    rg: string
+    rg: string,
+    login: string,
+    senha: string,
+    valorCarteira: number
 }

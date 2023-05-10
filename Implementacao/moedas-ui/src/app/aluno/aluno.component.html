@@ -10,6 +10,7 @@
                 <th scope="col">Email</th>
                 <th scope="col">Instituição</th>
                 <th scope="col">Curso</th>
+                <th scope="col">Carteira</th>
                 <th scope="col">Ações</th>
             </tr>
         </thead>
@@ -19,6 +20,7 @@
                 <td>{{aluno.email}}</td>
                 <td>{{aluno.instituicaoEnsino}}</td>
                 <td>{{aluno.curso}}</td>
+                <td>{{aluno.valorCarteira}}</td>
                 <td>
                     <button type="button" class="btn btn-primary m-1" (click)="setAction('edit', aluno)">Editar</button>
                     <button type="button" class="btn btn-danger m-1" (click)="deletar(aluno)">Deletar</button>

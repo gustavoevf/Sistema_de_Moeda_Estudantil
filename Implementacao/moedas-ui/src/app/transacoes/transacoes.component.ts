@@ -52,6 +52,7 @@ export class TransacoesComponent implements OnInit {
           this.switchAction();
           this.getTransacoes();
         }).catch(error => {
+          alert("Saldo insuficiente");
           this.switchAction();
         });
         break;
