@@ -3,6 +3,10 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TransacaoModel } from '../shared/models/transacao.model';
 import { TransacaoService } from '../shared/services/transacao.service';
+import { ProfessorModel } from '../shared/models/professor.model';
+import { AlunoModel } from '../shared/models/aluno.model';
+import { AlunoService } from '../shared/services/aluno.service';
+import { ProfessorService } from '../shared/services/professor.service';
 
 @Component({
   selector: 'app-transacoes',
@@ -15,33 +19,50 @@ export class TransacoesComponent implements OnInit {
   showAction: boolean = false;
   transacoes: Array<TransacaoModel> = [];
   transacaoSelecionada: TransacaoModel;
+  professores: Array<ProfessorModel>;
+  alunos: Array<AlunoModel>;
   action: string = 'edit';
   title: string = '';
   form: FormGroup = new FormGroup({
-    nome: new FormControl({ value: '', disabled: this.action == 'view' }),
-    vantagens: new FormControl({ value: '', disabled: this.action == 'view' })
+    remetente: new FormControl({ value: '', disabled: this.action == 'view' }),
+    destinatario: new FormControl({ value: '', disabled: this.action == 'view' }),
+    valor: new FormControl({ value: '', disabled: this.action == 'view' }),
+    descricao: new FormControl({ value: '', disabled: this.action == 'view' })
   });
 
   constructor(private transacaoService: TransacaoService,
+    private alunoService: AlunoService,
+    private professorService: ProfessorService,
     private router: Router) { }
 
   ngOnInit(): void {
-    this.getTransacaos();
+    this.getTransacoes();
+    this.getAlunos();
+    this.getProfessores();
   }
 
   salvar() {
     switch (this.action) {
       case 'create':
-        this.transacaoService.saveTransacao({...this.form.value, vantagens: this.form.controls['vantagens'].value.toString()}).then(resp => {
+        this.transacaoService.saveTransacao({
+          ...this.form.value,
+          remetente: { id: this.form.controls['remetente'].value.toString() },
+          destinatario: { id: this.form.controls['destinatario'].value.toString() }
+        }).then(resp => {
           this.switchAction();
-          this.getTransacaos();
+          this.getTransacoes();
         }).catch(error => {
           this.switchAction();
         });
         break;
       case 'edit':
-        this.transacaoService.updateTransacao({...this.form.value, vantagens: this.form.controls['vantagens'].value.toString()}, this.transacaoSelecionada.id).then(resp => {
-          this.getTransacaos();
+        this.transacaoService.updateTransacao({
+          ...this.form.value,
+          remetente: { id: this.form.controls['remetente'].value.toString() },
+          destinatario: { id: this.form.controls['destinatario'].value.toString() }
+        }, this.transacaoSelecionada.id
+        ).then(resp => {
+          this.getTransacoes();
           this.switchAction();
         }).catch(error => {
           this.switchAction();
@@ -55,9 +76,9 @@ export class TransacoesComponent implements OnInit {
 
   deletar(transacao: TransacaoModel) {
     this.transacaoService.deleteTransacao(transacao.id).then(
-      resp => this.getTransacaos()
+      resp => this.getTransacoes()
     ).catch(error =>
-      this.getTransacaos()
+      this.getTransacoes()
     )
   }
 
@@ -88,9 +109,25 @@ export class TransacoesComponent implements OnInit {
     }
   }
 
-  getTransacaos() {
+  getTransacoes() {
     this.transacaoService.getAllTransacao().then(resp => {
       this.transacoes = resp.content;
+    }).catch(error => {
+      console.log(error);
+    })
+  }
+
+  getAlunos() {
+    this.alunoService.getAllAluno().then(resp => {
+      this.alunos = resp.content;
+    }).catch(error => {
+      console.log(error);
+    })
+  }
+
+  getProfessores() {
+    this.professorService.getAllProfessor().then(resp => {
+      this.professores = resp.content;
     }).catch(error => {
       console.log(error);
     })

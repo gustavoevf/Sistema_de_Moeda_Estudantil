@@ -20,10 +20,40 @@
                 <td>{{transacao.descricao}}</td>
                 <td>{{transacao.valor}}</td>
                 <td>
-                    <button type="button" class="btn btn-primary m-1" (click)="setAction('edit', transacao)">Editar</button>
+                    <button type="button" class="btn btn-primary m-1"
+                        (click)="setAction('edit', transacao)">Editar</button>
                     <button type="button" class="btn btn-danger m-1" (click)="deletar(transacao)">Deletar</button>
                 </td>
             </tr>
         </tbody>
     </table>
+</div>
+<div *ngIf="showAction" class="p-5 d-flex justify-content-center align-items-center">
+    <div class="card col-8">
+        <h5 class="card-header">{{title}}</h5>
+        <div class="card-body">
+            <form [formGroup]="form">
+                <label for="remetente" class="form-label">Remetente</label>
+                <select id="remetente" name="remetente" class="form-select form-control" formControlName="remetente"
+                    aria-label="select remetente">
+                    <option *ngFor="let professor of professores" [value]="professor.id">{{professor.cpf}}</option>
+                </select>
+                <label for="destinatario" class="form-label">Destinatário</label>
+                <select id="destinatario" name="destinatario" class="form-select form-control"
+                    formControlName="destinatario" aria-label="select destinatario">
+                    <option *ngFor="let aluno of alunos" [value]="aluno.id">{{aluno.nome}}</option>
+                </select>
+                <label for="descricao" class="form-label">Descricao</label>
+                <input type="text" id="descricao" class="form-control" aria-labelledby="descricaoInput"
+                    [disabled]="action == 'view'" formControlName="descricao" [value]="transacaoSelecionada?.descricao">
+                <label for="valor" class="form-label">Valor</label>
+                <input type="number" id="valor" class="form-control" aria-labelledby="valorInput"
+                    [disabled]="action == 'view'" formControlName="valor" [value]="transacaoSelecionada?.valor">
+            </form>
+            <div class="mt-2">
+                <button type="button" class="btn btn-secondary" (click)="switchAction()">Fechar</button>
+                <button type="button" class="btn btn-primary ms-1" (click)="salvar()">Salvar</button>
+            </div>
+        </div>
+    </div>
 </div>
