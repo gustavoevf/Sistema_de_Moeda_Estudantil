@@ -16,4 +16,7 @@ public interface TransacaoRepository extends JpaRepository<TransacaoModel, UUID>
 
     @Query("SELECT t FROM TransacaoModel t WHERE t.remetente.id = :remetente")
     List<TransacaoModel> findByRemetente(@Param("remetente") UUID id);
+
+    @Query("SELECT t FROM TransacaoModel t WHERE t.destinatario.id = :destinatario")
+    List<TransacaoModel> findByDestinatario(@Param("destinatario") UUID id);
 }

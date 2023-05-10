@@ -55,6 +55,16 @@ public class TransacaoController {
         }
     }
 
+    @GetMapping("/por-destinatario/{id}")
+    public ResponseEntity<List<TransacaoModel>> buscarPorDestinatario(@PathVariable(value = "id") UUID id) {
+        List<TransacaoModel> transacao = transacaoService.findByDestinatario(id);
+        if (transacao != null) {
+            return ResponseEntity.ok(transacao);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Object> getOneTransacao(@PathVariable(value = "id") UUID id){
         Optional<TransacaoModel> transacaoModelOptional = transacaoService.findById(id);

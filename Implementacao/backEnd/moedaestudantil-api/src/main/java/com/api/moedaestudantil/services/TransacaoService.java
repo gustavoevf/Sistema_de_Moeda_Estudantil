@@ -66,6 +66,10 @@ public class TransacaoService {
         return transacaoRepository.findByRemetente(remetente);
     }
 
+    public List<TransacaoModel> findByDestinatario(UUID destinatario) {
+        return transacaoRepository.findByDestinatario(destinatario);
+    }
+
     @Transactional
     public void delete(TransacaoModel transacaoModel) {
         transacaoRepository.delete(transacaoModel);
