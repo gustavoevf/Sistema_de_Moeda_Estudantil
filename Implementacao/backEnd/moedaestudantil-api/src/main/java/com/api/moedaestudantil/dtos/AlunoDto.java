@@ -3,7 +3,7 @@ package com.api.moedaestudantil.dtos;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
-public class AlunoDto implements Serializable {
+public class AlunoDto extends UsuarioDto {
     private static final long serialVersionUID = 1L;
 
     @NotNull

@@ -5,13 +5,11 @@ import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
+@PrimaryKeyJoinColumn(name="id")
 @Table(name = "aluno")
-public class AlunoModel implements Serializable {
+public class AlunoModel extends UsuarioModel {
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
     @Column(nullable = false, length = 200)
     private String nome;
     @Column(nullable = false, length = 150)
@@ -30,14 +28,6 @@ public class AlunoModel implements Serializable {
 
     @Column(nullable = false, length = 200)
     private String curso;
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
 
     public String getNome() {
         return nome;
