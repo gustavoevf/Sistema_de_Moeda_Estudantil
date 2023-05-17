@@ -29,6 +29,10 @@ public class TransacaoService {
         Optional<UsuarioModel> remetenteOpt = usuarioRepository.findById(transacaoModel.getRemetente().getId());
         Optional<UsuarioModel> destinatarioOpt = usuarioRepository.findById(transacaoModel.getDestinatario().getId());
 
+        if(transacaoModel.getValor() <= 0){
+            throw new RuntimeException("Valor inválido");
+        }
+
         if (remetenteOpt.isPresent() && destinatarioOpt.isPresent()) {
             UsuarioModel remetente = remetenteOpt.get();
             UsuarioModel destinatario = destinatarioOpt.get();
