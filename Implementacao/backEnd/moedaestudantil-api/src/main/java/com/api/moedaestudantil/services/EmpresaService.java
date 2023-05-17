@@ -21,6 +21,7 @@ public class EmpresaService {
 
     @Transactional
     public EmpresaModel save(EmpresaModel empresaModel) {
+        empresaModel.setTipo("Empresa");
         return empresaRepository.save(empresaModel);
     }
 

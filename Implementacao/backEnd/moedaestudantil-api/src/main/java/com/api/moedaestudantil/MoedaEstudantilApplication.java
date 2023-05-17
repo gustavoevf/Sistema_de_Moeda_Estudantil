@@ -15,6 +15,6 @@ public class MoedaEstudantilApplication {
 
 	@GetMapping("/")
 	public String index(){
-		return "Olá Mundo!";
+		return "Sistema moeda estudantil";
 	}
 }

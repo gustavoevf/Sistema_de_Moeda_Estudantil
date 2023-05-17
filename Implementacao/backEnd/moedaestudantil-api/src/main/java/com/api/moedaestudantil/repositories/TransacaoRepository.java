@@ -1,6 +1,5 @@
 package com.api.moedaestudantil.repositories;
 
-import com.api.moedaestudantil.dtos.EnviarTransacaoDto;
 import com.api.moedaestudantil.models.TransacaoModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

@@ -21,6 +21,7 @@ public class ProfessorService {
 
     @Transactional
     public ProfessorModel save(ProfessorModel professorModel) {
+        professorModel.setTipo("Professor");
         return professorRepository.save(professorModel);
     }
 

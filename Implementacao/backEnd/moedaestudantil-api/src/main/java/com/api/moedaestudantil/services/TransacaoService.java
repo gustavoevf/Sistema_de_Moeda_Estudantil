@@ -1,6 +1,5 @@
 package com.api.moedaestudantil.services;
 
-import com.api.moedaestudantil.dtos.EnviarTransacaoDto;
 import com.api.moedaestudantil.models.TransacaoModel;
 import com.api.moedaestudantil.models.UsuarioModel;
 import com.api.moedaestudantil.repositories.TransacaoRepository;
@@ -48,7 +47,10 @@ public class TransacaoService {
             usuarioRepository.save(remetente);
             usuarioRepository.save(destinatario);
 
-            return transacaoRepository.save(transacaoModel);
+            Optional<TransacaoModel> save = Optional.ofNullable(transacaoRepository.save(transacaoModel));
+            return save.orElseGet(TransacaoModel::new);
+
+
         } else {
             throw new RuntimeException("Remetente ou destinatário não encontrado");
         }

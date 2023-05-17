@@ -1,6 +1,6 @@
 package com.api.moedaestudantil.services;
 
-import com.api.moedaestudantil.models.TransacaoModel;
+import com.api.moedaestudantil.dtos.LoginDto;
 import com.api.moedaestudantil.models.UsuarioModel;
 import com.api.moedaestudantil.repositories.TransacaoRepository;
 import com.api.moedaestudantil.repositories.UsuarioRepository;
@@ -43,6 +43,18 @@ public class UsuarioService {
     @Transactional
     public void delete(UsuarioModel usuarioModel) {
         usuarioRepository.delete(usuarioModel);
+    }
+
+    public UsuarioModel login(LoginDto loginDto) {
+        UsuarioModel user = usuarioRepository.findByLogin(loginDto.getLogin());
+        if(user == null) {
+            throw new RuntimeException("Usuário nao existe.");
+        }
+        if(!user.getSenha().equals(loginDto.getSenha())){
+            throw new RuntimeException("Senha incorreta!");
+        }
+
+        return user;
     }
 
 }

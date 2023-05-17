@@ -1,6 +1,5 @@
 package com.api.moedaestudantil.controllers;
 
-import com.api.moedaestudantil.dtos.EnviarTransacaoDto;
 import com.api.moedaestudantil.dtos.TransacaoDto;
 import com.api.moedaestudantil.models.TransacaoModel;
 import com.api.moedaestudantil.models.UsuarioModel;

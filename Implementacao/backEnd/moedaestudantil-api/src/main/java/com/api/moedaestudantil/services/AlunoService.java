@@ -21,6 +21,8 @@ public class AlunoService {
 
     @Transactional
     public AlunoModel save(AlunoModel alunoModel) {
+        alunoModel.setTipo("Aluno");
+
         return alunoRepository.save(alunoModel);
     }
 
@@ -35,6 +37,10 @@ public class AlunoService {
 
     @Transactional
     public void delete(AlunoModel alunoModel) {
+        alunoRepository.delete(alunoModel);
+    }
+
+    public void obterTipo(AlunoModel alunoModel) {
         alunoRepository.delete(alunoModel);
     }
 }

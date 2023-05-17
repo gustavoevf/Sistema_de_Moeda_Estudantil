@@ -1,5 +1,6 @@
 package com.api.moedaestudantil.controllers;
 
+import com.api.moedaestudantil.dtos.LoginDto;
 import com.api.moedaestudantil.dtos.UsuarioDto;
 import com.api.moedaestudantil.models.TransacaoModel;
 import com.api.moedaestudantil.models.UsuarioModel;
@@ -72,6 +73,13 @@ public class UsuarioController {
         BeanUtils.copyProperties(usuarioDto, usuarioModel);
         usuarioModel.setId(usuarioModelOptional.get().getId());
         return ResponseEntity.status(HttpStatus.OK).body(usuarioService.save(usuarioModel));
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<Object> loginUsuario(@RequestBody @Valid LoginDto loginDto){
+        UsuarioModel usuario = usuarioService.login(loginDto);
+
+        return ResponseEntity.status(HttpStatus.OK).body(usuario);
     }
 
 
