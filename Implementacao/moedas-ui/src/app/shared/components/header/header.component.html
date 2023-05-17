@@ -5,14 +5,17 @@
     </button>
     <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav">
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="tipoUsuario == 'Admin'">
                 <a class="nav-link" href="aluno">Alunos</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="tipoUsuario == 'Admin'">
                 <a class="nav-link" href="empresa">Empresas</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="tipoUsuario == 'Professor'">
                 <a class="nav-link" href="transacoes">Transações</a>
+            </li>
+            <li class="nav-item" *ngIf="tipoUsuario == 'Aluno' || tipoUsuario == 'Empresa'">
+                <a class="nav-link" href="vantagens">Vantagens</a>
             </li>
         </ul>
     </div>

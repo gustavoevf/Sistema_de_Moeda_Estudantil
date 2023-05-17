@@ -3,5 +3,6 @@ export interface UsuarioModel {
     login: string,
     senha: string,
     valorCarteira: number,
-    nome: string
+    nome: string,
+    tipo: string
 }

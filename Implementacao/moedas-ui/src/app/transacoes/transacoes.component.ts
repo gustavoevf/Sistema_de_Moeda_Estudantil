@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TransacaoModel } from '../shared/models/transacao.model';
 import { TransacaoService } from '../shared/services/transacao.service';
@@ -24,10 +24,10 @@ export class TransacoesComponent implements OnInit {
   action: string = 'edit';
   title: string = '';
   form: FormGroup = new FormGroup({
-    remetente: new FormControl({ value: '', disabled: this.action == 'view' }),
-    destinatario: new FormControl({ value: '', disabled: this.action == 'view' }),
-    valor: new FormControl({ value: '', disabled: this.action == 'view' }),
-    descricao: new FormControl({ value: '', disabled: this.action == 'view' })
+    remetente: new FormControl({ value: '', disabled: this.action == 'view' }, Validators.required),
+    destinatario: new FormControl({ value: '', disabled: this.action == 'view' }, Validators.required),
+    valor: new FormControl({ value: '', disabled: this.action == 'view' }, Validators.min(0)),
+    descricao: new FormControl({ value: '', disabled: this.action == 'view' }, Validators.required)
   });
 
   constructor(private transacaoService: TransacaoService,
@@ -42,36 +42,40 @@ export class TransacoesComponent implements OnInit {
   }
 
   salvar() {
-    switch (this.action) {
-      case 'create':
-        this.transacaoService.saveTransacao({
-          ...this.form.value,
-          remetente: { id: this.form.controls['remetente'].value.toString() },
-          destinatario: { id: this.form.controls['destinatario'].value.toString() }
-        }).then(resp => {
-          this.switchAction();
-          this.getTransacoes();
-        }).catch(error => {
-          alert("Saldo insuficiente");
-          this.switchAction();
-        });
-        break;
-      case 'edit':
-        this.transacaoService.updateTransacao({
-          ...this.form.value,
-          remetente: { id: this.form.controls['remetente'].value.toString() },
-          destinatario: { id: this.form.controls['destinatario'].value.toString() }
-        }, this.transacaoSelecionada.id
-        ).then(resp => {
-          this.getTransacoes();
-          this.switchAction();
-        }).catch(error => {
-          this.switchAction();
-        });;
-        break;
+    if (this.form.invalid) {
+      alert("Verifique o preenchimento dos campos");
+    } else {
+      switch (this.action) {
+        case 'create':
+          this.transacaoService.saveTransacao({
+            ...this.form.value,
+            remetente: { id: this.form.controls['remetente'].value.toString() },
+            destinatario: { id: this.form.controls['destinatario'].value.toString() }
+          }).then(resp => {
+            this.switchAction();
+            this.getTransacoes();
+          }).catch(error => {
+            alert("Saldo insuficiente");
+            this.switchAction();
+          });
+          break;
+        case 'edit':
+          this.transacaoService.updateTransacao({
+            ...this.form.value,
+            remetente: { id: this.form.controls['remetente'].value.toString() },
+            destinatario: { id: this.form.controls['destinatario'].value.toString() }
+          }, this.transacaoSelecionada.id
+          ).then(resp => {
+            this.getTransacoes();
+            this.switchAction();
+          }).catch(error => {
+            this.switchAction();
+          });;
+          break;
 
-      default:
-        break;
+        default:
+          break;
+      }
     }
   }
 
