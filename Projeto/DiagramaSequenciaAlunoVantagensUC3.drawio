@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-05-18T01:16:35.308Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36" etag="GcI171H6lPplA0Ky4JXn" version="21.3.2" type="github">
+<mxfile host="app.diagrams.net" modified="2023-05-18T01:24:56.730Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36" etag="B3oruHBwn-vxlwfBPrH3" version="21.3.2" type="github">
   <diagram name="Page-1" id="2YBvvXClWsGukQMizWep">
     <mxGraphModel dx="2284" dy="796" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -43,29 +43,29 @@
             <mxPoint x="1160" y="400" as="sourcePoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="hJTuhNi6eEkztYhLTzRL-3" style="edgeStyle=elbowEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;elbow=vertical;curved=0;" edge="1" parent="1" source="Q1VgEeJRlTlvnJsxtet2-6" target="Q1VgEeJRlTlvnJsxtet2-11">
+        <mxCell id="hJTuhNi6eEkztYhLTzRL-3" style="edgeStyle=elbowEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;elbow=vertical;curved=0;" parent="1" source="Q1VgEeJRlTlvnJsxtet2-6" target="Q1VgEeJRlTlvnJsxtet2-11" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="hJTuhNi6eEkztYhLTzRL-4" value="&amp;nbsp;findAll(Pageable pageable)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="340" y="275" width="170" height="30" as="geometry" />
+        <mxCell id="hJTuhNi6eEkztYhLTzRL-4" value="&amp;nbsp;findAll(Pageable pageable):&amp;nbsp;Page&amp;lt;VantagemModel&amp;gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="270" y="275" width="310" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="hJTuhNi6eEkztYhLTzRL-5" value="vanR: VantagemRepository&amp;nbsp;" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="1">
-          <mxGeometry x="910" y="70" width="140" height="420" as="geometry" />
+        <mxCell id="hJTuhNi6eEkztYhLTzRL-5" value="vanR: VantagemRepository&amp;nbsp;" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="1" vertex="1">
+          <mxGeometry x="1010" y="70" width="140" height="420" as="geometry" />
         </mxCell>
-        <mxCell id="hJTuhNi6eEkztYhLTzRL-6" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="hJTuhNi6eEkztYhLTzRL-5">
+        <mxCell id="hJTuhNi6eEkztYhLTzRL-6" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="hJTuhNi6eEkztYhLTzRL-5" vertex="1">
           <mxGeometry x="65" y="60" width="10" height="330" as="geometry" />
         </mxCell>
-        <mxCell id="hJTuhNi6eEkztYhLTzRL-7" style="edgeStyle=elbowEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;elbow=vertical;curved=0;" edge="1" parent="1" source="Q1VgEeJRlTlvnJsxtet2-12" target="hJTuhNi6eEkztYhLTzRL-5">
+        <mxCell id="hJTuhNi6eEkztYhLTzRL-7" style="edgeStyle=elbowEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;elbow=vertical;curved=0;" parent="1" source="Q1VgEeJRlTlvnJsxtet2-12" target="hJTuhNi6eEkztYhLTzRL-5" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="850" y="350" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="hJTuhNi6eEkztYhLTzRL-8" value="&amp;nbsp;findAll(Pageable pageable)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="760" y="320" width="170" height="30" as="geometry" />
+        <mxCell id="hJTuhNi6eEkztYhLTzRL-8" value="&amp;nbsp;findAll(Pageable pageable):&amp;nbsp;Page&amp;lt;VantagemModel&amp;gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="740" y="320" width="310" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="hJTuhNi6eEkztYhLTzRL-9" value="return" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;" edge="1" parent="1" target="Q1VgEeJRlTlvnJsxtet2-5">
+        <mxCell id="hJTuhNi6eEkztYhLTzRL-9" value="return" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;" parent="1" target="Q1VgEeJRlTlvnJsxtet2-5" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="440" y="334.5" as="targetPoint" />
             <Array as="points">
