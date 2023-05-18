@@ -4,7 +4,7 @@ import { TransacoesComponent } from './transacoes.component';
 import { UserGuard } from '../shared/guards/user.guard';
 
 const routes: Routes = [
-  { path: 'transacoes', component: TransacoesComponent, canActivate: [UserGuard] }
+  { path: 'transacoes', component: TransacoesComponent }
 ];
 
 @NgModule({

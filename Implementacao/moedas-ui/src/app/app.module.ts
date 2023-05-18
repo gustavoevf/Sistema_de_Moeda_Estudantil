@@ -9,6 +9,7 @@ import { AlunoModule } from './aluno/aluno.module';
 import { EmpresaModule } from './empresa/empresa.module';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { TransacoesModule } from './transacoes/transacoes.module';
+import { VantagensModule } from './vantagens/vantagens.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { TransacoesModule } from './transacoes/transacoes.module';
     LoginModule,
     AlunoModule,
     EmpresaModule,
-    TransacoesModule
+    TransacoesModule,
+    VantagensModule
   ],
   providers: [],
   bootstrap: [AppComponent]

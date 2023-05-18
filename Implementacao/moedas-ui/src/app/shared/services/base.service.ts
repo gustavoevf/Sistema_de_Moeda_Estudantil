@@ -2,7 +2,7 @@ import { tap } from "rxjs";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 export class BaseService {
-    baseUrl = 'http://172.20.10.2:8080';
+    baseUrl = 'http://localhost:8080';
 
     private httpHeaders = {
         headers: new HttpHeaders({

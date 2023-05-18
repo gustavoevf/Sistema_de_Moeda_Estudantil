@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlunoModel } from '../shared/models/aluno.model';
 import { AlunoService } from '../shared/services/aluno.service';
+import { GlobalService } from '../shared/services/global.service';
 
 @Component({
   selector: 'app-aluno',
@@ -28,10 +29,12 @@ export class AlunoComponent implements OnInit {
   });
 
   constructor(private alunoService: AlunoService,
-    private router: Router) { }
+    private router: Router,
+    private globalService: GlobalService) { }
 
   ngOnInit(): void {
     this.getAlunos();
+    console.log(this.globalService.usuario);
   }
 
   salvar() {

@@ -4,7 +4,7 @@ import { UserGuard } from '../shared/guards/user.guard';
 import { VantagensComponent } from './vantagens.component';
 
 const routes: Routes = [
-  { path: 'vantagens', component: VantagensComponent, canActivate: [UserGuard] }
+  { path: 'vantagens', component: VantagensComponent }
 ];
 
 @NgModule({

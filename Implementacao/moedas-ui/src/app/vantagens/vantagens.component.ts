@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { VantagemService } from '../shared/services/vantagem.service';
 import { VantagemModel } from '../shared/models/vantagem.model';
+import { GlobalService } from '../shared/services/global.service';
 
 @Component({
   selector: 'app-vantagens',
@@ -19,21 +20,30 @@ export class VantagensComponent implements OnInit {
   title: string = '';
   form: FormGroup = new FormGroup({
     descricao: new FormControl({ value: '', disabled: this.action == 'view' }),
-    fotoProduto: new FormControl({ value: '', disabled: this.action == 'view' }),
     custo: new FormControl({ value: '', disabled: this.action == 'view' }),
+    fotoProduto: new FormControl({ value: '', disabled: this.action == 'view' }),
   });
 
   constructor(private vantagemService: VantagemService,
-    private router: Router) { }
+    private router: Router,
+    private globalService: GlobalService) { }
+
+    user: any = {};
 
   ngOnInit(): void {
     this.getVantagens();
+    let obLocalStorage = localStorage.getItem('@User');
+    if(obLocalStorage){
+      this.user = JSON.parse(obLocalStorage);
+    }
   }
 
   salvar() {
     switch (this.action) {
       case 'create':
-        this.vantagemService.saveVantagem(this.form.value).then(resp => {
+        
+        let newObj = {...this.form.value, empresa: {id: this.user.id}}
+        this.vantagemService.saveVantagem(newObj).then(resp => {
           this.switchAction();
           this.getVantagens();
         }).catch(error => {

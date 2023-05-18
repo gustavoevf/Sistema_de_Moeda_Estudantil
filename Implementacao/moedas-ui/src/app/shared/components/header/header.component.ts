@@ -13,7 +13,18 @@ export class HeaderComponent implements OnInit {
   tipoUsuario: string = '';
 
   ngOnInit(): void {
-    this.tipoUsuario = this.globalService.tipoUsuario;
+    let objUser = localStorage.getItem('@User');
+    if(objUser){
+      let tipo = JSON.parse(objUser).tipo;
+      this.tipoUsuario = tipo;
+      console.log(tipo)
+    }
+    
+  }
+
+  logout(){
+    window.location.href = "/login";
+    localStorage.clear();
   }
 
 }

@@ -17,6 +17,8 @@ public class UsuarioDto implements Serializable {
     @NotNull
     private double valorCarteira;
 
+    private String tipo;
+
     public String getLogin() {
         return login;
     }
@@ -41,4 +43,11 @@ public class UsuarioDto implements Serializable {
         this.valorCarteira = valorCarteira;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
 }

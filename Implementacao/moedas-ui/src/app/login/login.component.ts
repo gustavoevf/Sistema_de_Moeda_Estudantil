@@ -12,8 +12,8 @@ import { UsuarioModel } from '../shared/models/usuario.model';
 })
 export class LoginComponent implements OnInit {
   form: FormGroup = new FormGroup({
-    login: new FormControl({ value: '' }),
-    senha: new FormControl({ value: '' })
+    login: new FormControl(),
+    senha: new FormControl()
   });
 
   constructor(
@@ -23,12 +23,13 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.router.navigate(['aluno']);
+
   }
 
   entrar() {
     this.usuarioService.login(this.form.value).then(result => {
-      this.globalService.usuario = result as UsuarioModel;
+      localStorage.setItem('@User', JSON.stringify(result));
+      location.reload();
     }).catch(error => {
       alert(error);
     })

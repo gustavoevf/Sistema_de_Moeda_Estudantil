@@ -1,5 +1,5 @@
 <div class="p-5 pt-3" *ngIf="!showAction">
-    <div class="d-flex justify-content-end">
+    <div class="d-flex justify-content-end" *ngIf="user.tipo === 'Empresa'">
         <button type="button" class="btn btn-primary" (click)="setAction('create')">+ Nova
             Vantagem</button>
     </div>
@@ -7,11 +7,15 @@
         <thead>
             <tr>
                 <th scope="col">Descricao</th>
+                <th scope="col">Custo</th>
+                <th scope="col">Foto</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let vantagem of vantagens">
                 <td>{{vantagem.descricao}}</td>
+                <td>{{vantagem.custo}}</td>
+                <td><img style="max-width: 50px;" src={{vantagem.fotoProduto}} alt=""></td>
             </tr>
         </tbody>
     </table>
@@ -24,6 +28,12 @@
                 <label for="descricao" class="form-label">Descricao</label>
                 <input type="text" id="descricao" class="form-control" aria-labelledby="descricaoInput"
                     [disabled]="action == 'view'" formControlName="descricao">
+                <label for="custo" class="form-label">Custo</label>
+                <input type="number" id="custo" class="form-control" aria-labelledby="custoInput"
+                    [disabled]="action == 'view'" formControlName="custo">
+                <label for="custo" class="form-label">Foto</label>
+                <input type="text" id="fotoProduto" class="form-control" aria-labelledby="fotoProdutoInput"
+                    [disabled]="action == 'view'" formControlName="fotoProduto">
             </form>
             <div class="mt-2">
                 <button type="button" class="btn btn-secondary" (click)="switchAction()">Fechar</button>

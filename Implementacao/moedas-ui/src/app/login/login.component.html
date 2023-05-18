@@ -4,10 +4,10 @@
             <form [formGroup]="form">
                 <label for="login" class="form-label">Login</label>
                 <input type="text" id="login" class="form-control" aria-labelledby="loginInput" 
-                formControlName="login" [value]="''">
+                formControlName="login">
                 <label for="senha" class="form-label">Senha</label>
                 <input type="text" id="senha" class="form-control" aria-labelledby="senhaInput" 
-                formControlName="senha" [value]="''">
+                formControlName="senha">
             </form>
             <div class="mt-2">
                 <button type="button" class="btn btn-primary ms-1" (click)="entrar()">Salvar</button>

@@ -13,22 +13,22 @@ export class VantagemService extends BaseService {
    }
 
   saveVantagem(vantagem: VantagemModel) {
-    return this.post("/transacao", vantagem);
+    return this.post("/vantagem", vantagem);
   }
 
   getAllVantagem() {
-    return this.get("/transacao");
+    return this.get("/vantagem");
   }
 
   getOneVantagem(id: string) {
-    return this.get("/transacao/" + id);
+    return this.get("/vantagem/" + id);
   }
 
   deleteVantagem(id: string) {
-    return this.delete("/transacao/" + id);
+    return this.delete("/vantagem/" + id);
   }
 
   updateVantagem(vantagem: VantagemModel, id: string) {
-    return this.put("/transacao/" + id, vantagem);
+    return this.put("/vantagem/" + id, vantagem);
   }
 }
