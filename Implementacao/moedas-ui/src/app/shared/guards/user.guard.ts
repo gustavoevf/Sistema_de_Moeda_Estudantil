@@ -21,30 +21,31 @@ export class UserGuard implements CanActivate {
     canActivate(
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-        if (this.loggedPages.some(x => x.includes(route.url.toString())) && !this.globalService.usuario) {
+        let objUser = localStorage.getItem('@User');
+        let tipo = '';
+        if (objUser) {
+            tipo = JSON.parse(objUser).tipo;
+        }
+
+        if (this.loggedPages.some(x => x.includes(route.url.toString())) && !tipo) {
             this.router.navigate(['login']);
             return false;
         }
 
-        let objUser = localStorage.getItem('@User');
-        let tipo = '';
-        if(objUser){
-            tipo = JSON.parse(objUser).tipo;
-        }
-        if(route.url.toString() == 'login' && objUser) {
-            switch(tipo) {
+        if (route.url.toString() == 'login' && objUser) {
+            switch (tipo) {
                 case 'Aluno':
-                  this.router.navigate(['vantagens']);
-                  break;
+                    this.router.navigate(['vantagens']);
+                    break;
                 case 'Professor':
-                  this.router.navigate(['transacoes']);
-                  break;
+                    this.router.navigate(['transacoes']);
+                    break;
                 case 'Empresa':
-                  this.router.navigate(['vantagens']);
-                  break;
+                    this.router.navigate(['vantagens']);
+                    break;
                 case 'Admin':
-                  this.router.navigate(['aluno']);
-              }
+                    this.router.navigate(['aluno']);
+            }
         }
 
         return true;
