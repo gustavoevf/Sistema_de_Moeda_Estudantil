@@ -23,6 +23,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(){
+    this.tipoUsuario = '';
     window.location.href = "/login";
     localStorage.clear();
   }

@@ -7,6 +7,7 @@ import { ProfessorModel } from '../shared/models/professor.model';
 import { AlunoModel } from '../shared/models/aluno.model';
 import { AlunoService } from '../shared/services/aluno.service';
 import { ProfessorService } from '../shared/services/professor.service';
+import { GlobalService } from '../shared/services/global.service';
 
 @Component({
   selector: 'app-transacoes',
@@ -33,7 +34,8 @@ export class TransacoesComponent implements OnInit {
   constructor(private transacaoService: TransacaoService,
     private alunoService: AlunoService,
     private professorService: ProfessorService,
-    private router: Router) { }
+    private router: Router,
+    private globalService: GlobalService) { }
 
   ngOnInit(): void {
     this.getTransacoes();
