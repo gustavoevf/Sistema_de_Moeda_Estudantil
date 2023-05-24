@@ -20,16 +20,16 @@ export class TransacoesComponent implements OnInit {
   showAction: boolean = false;
   transacoes: Array<TransacaoModel> = [];
   transacaoSelecionada: TransacaoModel;
-  professores: Array<ProfessorModel>;
   alunos: Array<AlunoModel>;
   action: string = 'edit';
   title: string = '';
   form: FormGroup = new FormGroup({
-    remetente: new FormControl({ value: '', disabled: this.action == 'view' }, Validators.required),
     destinatario: new FormControl({ value: '', disabled: this.action == 'view' }, Validators.required),
     valor: new FormControl({ value: '', disabled: this.action == 'view' }, Validators.min(0)),
     descricao: new FormControl({ value: '', disabled: this.action == 'view' }, Validators.required)
   });
+
+  user: any = {};
 
   constructor(private transacaoService: TransacaoService,
     private alunoService: AlunoService,
@@ -38,9 +38,12 @@ export class TransacoesComponent implements OnInit {
     private globalService: GlobalService) { }
 
   ngOnInit(): void {
+    let obLocalStorage = localStorage.getItem('@User');
+    if (obLocalStorage) {
+      this.user = JSON.parse(obLocalStorage);
+    }
     this.getTransacoes();
     this.getAlunos();
-    this.getProfessores();
   }
 
   salvar() {
@@ -51,7 +54,7 @@ export class TransacoesComponent implements OnInit {
         case 'create':
           this.transacaoService.saveTransacao({
             ...this.form.value,
-            remetente: { id: this.form.controls['remetente'].value.toString() },
+            remetente: { id: this.user.id },
             destinatario: { id: this.form.controls['destinatario'].value.toString() }
           }).then(resp => {
             this.switchAction();
@@ -64,7 +67,7 @@ export class TransacoesComponent implements OnInit {
         case 'edit':
           this.transacaoService.updateTransacao({
             ...this.form.value,
-            remetente: { id: this.form.controls['remetente'].value.toString() },
+            remetente: { id: this.user.id },
             destinatario: { id: this.form.controls['destinatario'].value.toString() }
           }, this.transacaoSelecionada.id
           ).then(resp => {
@@ -117,8 +120,8 @@ export class TransacoesComponent implements OnInit {
   }
 
   getTransacoes() {
-    this.transacaoService.getAllTransacao().then(resp => {
-      this.transacoes = resp.content;
+    this.transacaoService.buscarPorRemetente(this.user.id).then(resp => {
+      this.transacoes = resp;
     }).catch(error => {
       console.log(error);
     })
@@ -127,14 +130,6 @@ export class TransacoesComponent implements OnInit {
   getAlunos() {
     this.alunoService.getAllAluno().then(resp => {
       this.alunos = resp.content;
-    }).catch(error => {
-      console.log(error);
-    })
-  }
-
-  getProfessores() {
-    this.professorService.getAllProfessor().then(resp => {
-      this.professores = resp.content;
     }).catch(error => {
       console.log(error);
     })

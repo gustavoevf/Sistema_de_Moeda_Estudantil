@@ -7,7 +7,6 @@
         <thead>
             <tr>
                 <th scope="col">Nome</th>
-                <th scope="col">Vantagens</th>
                 <th scope="col">Email</th>
                 <th scope="col">Ações</th>
             </tr>
@@ -15,7 +14,6 @@
         <tbody>
             <tr *ngFor="let empresa of empresas">
                 <td>{{empresa.nome}}</td>
-                <td>{{empresa.vantagens}}</td>
                 <td>{{empresa.email}}</td>
                 <td>
                     <button type="button" class="btn btn-primary m-1" (click)="setAction('edit', empresa)">Editar</button>
@@ -36,12 +34,6 @@
                 <label for="nome" class="form-label">Email</label>
                 <input type="text" id="email" class="form-control" aria-labelledby="emailInput"
                     [disabled]="action == 'view'" formControlName="email" [value]="empresaSelecionada?.email">
-                <label for="vantagens" class="form-label">Vantagens</label>
-                <select id="vantagens" name="vantagens" class="form-select form-control" formControlName="vantagens" multiple aria-label="multiple select example">
-                    <option value="Desconto em produtos">Desconto em produtos</option>
-                    <option value="Cursos gratuitos">Cursos gratuitos</option>
-                    <option value="Bolsa de estudos">Bolsa de estudos</option>
-                  </select>
             </form>
             <div class="mt-2">
                 <button type="button" class="btn btn-secondary" (click)="switchAction()">Fechar</button>

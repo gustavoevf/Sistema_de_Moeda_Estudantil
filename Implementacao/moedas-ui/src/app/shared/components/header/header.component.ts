@@ -11,11 +11,12 @@ export class HeaderComponent implements OnInit {
   constructor(private globalService: GlobalService) { }
 
   tipoUsuario: string = '';
+  usuario: any;
 
   ngOnInit(): void {
-    let objUser = localStorage.getItem('@User');
-    if(objUser){
-      let tipo = JSON.parse(objUser).tipo;
+    this.usuario = localStorage.getItem('@User');
+    if(this.usuario){
+      let tipo = JSON.parse(this.usuario).tipo;
       this.tipoUsuario = tipo;
       console.log(tipo)
     }
