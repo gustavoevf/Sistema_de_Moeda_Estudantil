@@ -4,6 +4,7 @@ import com.api.moedaestudantil.models.TransacaoModel;
 import com.api.moedaestudantil.models.UsuarioModel;
 import com.api.moedaestudantil.repositories.TransacaoRepository;
 import com.api.moedaestudantil.repositories.UsuarioRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,9 @@ public class TransacaoService {
 
     final TransacaoRepository transacaoRepository;
     private final UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private EmailService emailService;
 
     public TransacaoService(TransacaoRepository transacaoRepository, UsuarioRepository usuarioRepository) {
         this.transacaoRepository = transacaoRepository;
@@ -50,6 +54,10 @@ public class TransacaoService {
 
             usuarioRepository.save(remetente);
             usuarioRepository.save(destinatario);
+
+            emailService.sendEmail(destinatario.getEmail(),
+                    "Você ganhou moedas!", "Olá! " +
+                            "Você recebeu " + transacaoModel.getValor() + " moedas.");
 
             Optional<TransacaoModel> save = Optional.ofNullable(transacaoRepository.save(transacaoModel));
             return save.orElseGet(TransacaoModel::new);

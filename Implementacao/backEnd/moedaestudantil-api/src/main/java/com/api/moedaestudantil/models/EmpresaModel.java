@@ -33,5 +33,4 @@ public class EmpresaModel extends UsuarioModel {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
 }
