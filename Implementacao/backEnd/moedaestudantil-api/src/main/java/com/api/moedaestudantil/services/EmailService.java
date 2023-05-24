@@ -2,31 +2,33 @@ package com.api.moedaestudantil.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.MailMessage;
+import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 
-
+@Component
 public class EmailService {
     @Autowired
-    private JavaMailSender mailSender;
+    private MailSender mailSender;
 
-    @Value("${spring.mail.username}") private String sender;
+    @Autowired
+    private MailMessage mailMessage;
 
-    public String sendEmail(String to, String subject, String body){
+
+    public void sendEmail(String to, String subject, String body){
         try {
-            SimpleMailMessage message = new SimpleMailMessage();
-            message.setFrom(sender);
-            message.setTo(to);
-            message.setSubject(subject);
-            message.setText(body);
+            mailMessage.setFrom("moedaestudantilpuc@outlook.com.br");
+            mailMessage.setTo(to);
+            mailMessage.setSubject(subject);
+            mailMessage.setText(body);
 
-            mailSender.send(message);
-            return "Mail Sent Successfully...";
+            mailSender.send((SimpleMailMessage) mailMessage);
+            System.out.println("E-mail enviado com sucesso!");
         }
         catch (Exception e) {
-            return e.getMessage();
+            System.out.println(e.getMessage());
         }
     }
 }

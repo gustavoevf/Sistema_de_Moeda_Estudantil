@@ -9,7 +9,6 @@ public class AlunoDto extends UsuarioDto {
     @NotNull
     private String nome;
 
-    private String email;
     @NotNull
     private String cpf;
     @NotNull
@@ -30,14 +29,6 @@ public class AlunoDto extends UsuarioDto {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getCpf() {

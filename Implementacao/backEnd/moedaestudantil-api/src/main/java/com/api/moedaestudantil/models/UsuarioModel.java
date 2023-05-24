@@ -22,6 +22,10 @@ public class UsuarioModel implements Serializable {
     private String login;
     @Column(nullable = false, length = 150)
     private String senha;
+
+    @Column(nullable = false, length = 150)
+    private String email;
+
     @Column(nullable = false)
     private double valorCarteira;
 
@@ -65,5 +69,11 @@ public class UsuarioModel implements Serializable {
         this.valorCarteira = valorCarteira;
     }
 
+    public String getEmail() {
+        return email;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

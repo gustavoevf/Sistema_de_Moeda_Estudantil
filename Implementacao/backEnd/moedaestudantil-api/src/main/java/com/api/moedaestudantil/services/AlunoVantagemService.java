@@ -6,6 +6,7 @@ import com.api.moedaestudantil.models.VantagemModel;
 import com.api.moedaestudantil.repositories.AlunoRepository;
 import com.api.moedaestudantil.repositories.AlunoVantagemRepository;
 import com.api.moedaestudantil.repositories.VantagemRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,8 @@ public class AlunoVantagemService {
 
     private final VantagemRepository vantagemRepository;
 
-    final EmailService emailService = new EmailService();
+    @Autowired
+    private EmailService emailService;
 
     public AlunoVantagemService(AlunoVantagemRepository alunoVantagemRepository, AlunoRepository alunoRepository,
                                 VantagemRepository vantagemRepository) {
@@ -51,8 +53,6 @@ public class AlunoVantagemService {
     public AlunoVantagemModel save(AlunoVantagemModel alunoVantagemModel) {
         Optional<AlunoModel> alunoOpt = alunoRepository.findById(alunoVantagemModel .getAluno().getId());
         Optional<VantagemModel> vantagemOpt = vantagemRepository.findById(alunoVantagemModel.getVantagem().getId());
-        System.out.println(emailService.sendEmail("pedro.reis@meta3.com.br",
-                "Teste", "oi"));
         if (alunoOpt.isPresent() && vantagemOpt.isPresent()) {
             AlunoModel aluno = alunoOpt.get();
             VantagemModel vantagem = vantagemOpt.get();
@@ -68,6 +68,13 @@ public class AlunoVantagemService {
             aluno.setValorCarteira(aluno.getValorCarteira() - valor);
 
             alunoRepository.save(aluno);
+
+            emailService.sendEmail(aluno.getEmail(),
+                    "Vantagem " + vantagem.getDescricao(), "O código do cupom da sua vantagem é: " + vantagem.getId());
+
+            emailService.sendEmail(aluno.getEmail(),
+                    "Troca de Vantagem " + vantagem.getDescricao(), "O aluno " + aluno.getNome() + " fez a troca da vantagem e seu cupom é " + vantagem.getId());
+
 
             Optional<AlunoVantagemModel> save = Optional.ofNullable(alunoVantagemRepository.save(alunoVantagemModel));
             return save.orElseGet(AlunoVantagemModel::new);

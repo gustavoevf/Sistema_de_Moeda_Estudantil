@@ -12,8 +12,7 @@ public class AlunoModel extends UsuarioModel {
 
     @Column(nullable = false, length = 200)
     private String nome;
-    @Column(nullable = false, length = 150)
-    private String email;
+
     @Column(nullable = false, length = 11)
     private String cpf;
 
@@ -35,14 +34,6 @@ public class AlunoModel extends UsuarioModel {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getCpf() {

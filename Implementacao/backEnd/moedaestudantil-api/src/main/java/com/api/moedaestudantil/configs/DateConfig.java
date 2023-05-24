@@ -6,8 +6,13 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.mail.MailMessage;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 import java.time.format.DateTimeFormatter;
+import java.util.Properties;
 
 @Configuration
 public class DateConfig {
@@ -22,6 +27,29 @@ public class DateConfig {
         module.addSerializer(LOCAL_DATETIME_SERIALIZER);
         return new ObjectMapper()
                 .registerModule(module);
+    }
+
+    @Bean
+    public MailSender mailSender() {
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+
+        mailSender.setHost("smtp-mail.outlook.com");
+        mailSender.setPort(587);
+        mailSender.setUsername("moedaestudantilpuc@outlook.com.br");
+        mailSender.setPassword("moeda@123");
+
+        Properties javaMailProperties = new Properties();
+        javaMailProperties.put("mail.smtp.auth", true);
+        javaMailProperties.put("mail.smtp.starttls.enable", true);
+
+        mailSender.setJavaMailProperties(javaMailProperties);
+
+        return mailSender;
+    }
+
+    @Bean
+    public MailMessage mailMessage() {
+        return new SimpleMailMessage();
     }
 
 }
