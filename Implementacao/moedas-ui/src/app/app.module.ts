@@ -25,6 +25,7 @@ import { VantagensModule } from './vantagens/vantagens.module';
     EmpresaModule,
     TransacoesModule,
     VantagensModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

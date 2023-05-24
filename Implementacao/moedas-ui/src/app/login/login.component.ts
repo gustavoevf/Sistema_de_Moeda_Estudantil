@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('@User', JSON.stringify(result));
       location.reload();
     }).catch(error => {
-      alert(error);
+      alert('Falha ao realizar login. Verifique usuário e senha.');
     })
   }
 

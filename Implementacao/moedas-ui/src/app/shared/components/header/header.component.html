@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary" *ngIf="tipoUsuario">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -17,9 +17,11 @@
             <li class="nav-item" *ngIf="tipoUsuario == 'Aluno' || tipoUsuario == 'Empresa'">
                 <a class="nav-link" href="vantagens">Vantagens</a>
             </li>
-            <button type="button" class="btn btn-secondary" (click)="logout()">
-                Sair
-            </button>
         </ul>
+    </div>
+    <div class="float-right pe-2">
+        <button type="button" class="btn btn-light" (click)="logout()">
+            Sair
+        </button>
     </div>
 </nav>

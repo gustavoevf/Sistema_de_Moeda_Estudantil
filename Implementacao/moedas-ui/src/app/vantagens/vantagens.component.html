@@ -3,12 +3,14 @@
         <button type="button" class="btn btn-primary" (click)="setAction('create')">+ Nova
             Vantagem</button>
     </div>
+    <h2 class="pt-2" *ngIf="user.tipo === 'Aluno'">Vantagens disponíveis</h2>
     <table class="table table-striped mt-3">
         <thead>
             <tr>
                 <th scope="col">Descricao</th>
                 <th scope="col">Custo</th>
                 <th scope="col">Foto</th>
+                <th scope="col" *ngIf="user.tipo === 'Aluno'">Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -16,6 +18,23 @@
                 <td>{{vantagem.descricao}}</td>
                 <td>{{vantagem.custo}}</td>
                 <td><img style="max-width: 50px;" src={{vantagem.fotoProduto}} alt=""></td>
+                <td *ngIf="user.tipo === 'Aluno'"><button type="button" class="btn btn-primary m-1"
+                        (click)="obterVantagem(vantagem)">Obter</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <h2 *ngIf="user.tipo === 'Aluno'" class="pt-2">Vantagens obtidas</h2>
+    <table *ngIf="user.tipo === 'Aluno'" class="table table-striped mt-3">
+        <thead>
+            <tr>
+                <th scope="col">Descricao</th>
+                <th scope="col">Custo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let obtida of vantagensObtidas">
+                <td>{{obtida.vantagem.descricao}}</td>
+                <td>{{obtida.vantagem.custo}}</td>
             </tr>
         </tbody>
     </table>

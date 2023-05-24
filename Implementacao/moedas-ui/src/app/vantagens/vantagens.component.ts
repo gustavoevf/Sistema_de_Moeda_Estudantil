@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { VantagemService } from '../shared/services/vantagem.service';
 import { VantagemModel } from '../shared/models/vantagem.model';
 import { GlobalService } from '../shared/services/global.service';
+import { AlunoVantagemModel } from '../shared/models/alunoVantagem.model';
+import { AlunoModel } from '../shared/models/aluno.model';
 
 @Component({
   selector: 'app-vantagens',
@@ -14,7 +16,9 @@ export class VantagensComponent implements OnInit {
   @ViewChild('closeButton') closeButton: any;
 
   showAction: boolean = false;
+  showObterVantagem: boolean = false;
   vantagens: Array<VantagemModel> = [];
+  vantagensObtidas: Array<AlunoVantagemModel> = [];
   vantagemSelecionada: VantagemModel;
   action: string = 'edit';
   title: string = '';
@@ -28,21 +32,20 @@ export class VantagensComponent implements OnInit {
     private router: Router,
     private globalService: GlobalService) { }
 
-    user: any = {};
+  user: any = {};
 
   ngOnInit(): void {
-    this.getVantagens();
     let obLocalStorage = localStorage.getItem('@User');
-    if(obLocalStorage){
+    if (obLocalStorage) {
       this.user = JSON.parse(obLocalStorage);
     }
+    this.getVantagens();
   }
 
   salvar() {
     switch (this.action) {
       case 'create':
-        
-        let newObj = {...this.form.value, empresa: {id: this.user.id}}
+        let newObj = { ...this.form.value, empresa: { id: this.user.id } }
         this.vantagemService.saveVantagem(newObj).then(resp => {
           this.switchAction();
           this.getVantagens();
@@ -50,27 +53,11 @@ export class VantagensComponent implements OnInit {
           this.switchAction();
         });
         break;
-      // case 'edit':
-      //   this.vantagemService.updateVantagem({...this.form.value, vantagens: this.form.controls['vantagens'].value.toString()}, this.vantagemSelecionada.id).then(resp => {
-      //     this.getVantagens();
-      //     this.switchAction();
-      //   }).catch(error => {
-      //     this.switchAction();
-      //   });;
-      //   break;
 
       default:
         break;
     }
   }
-
-  // deletar(vantagem: VantagemModel) {
-  //   this.vantagemService.deleteVantagem(vantagem.id).then(
-  //     resp => this.getEmpresas()
-  //   ).catch(error =>
-  //     this.getEmpresas()
-  //   )
-  // }
 
   setAction(action: string, vantagem: VantagemModel | null = null) {
     this.action = action;
@@ -100,10 +87,39 @@ export class VantagensComponent implements OnInit {
   }
 
   getVantagens() {
-    this.vantagemService.getAllVantagem().then(resp => {
-      this.vantagens = resp.content;
+    if (this.user.tipo === 'Admin' || this.user.tipo === 'Aluno') {
+      this.vantagemService.getAllVantagem().then(resp => {
+        this.vantagens = resp.content;
+      }).catch(error => {
+        console.log(error);
+      });
+    }
+    if (this.user.tipo === 'Aluno') {
+      this.vantagemService.alunoVantagemPorAluno(this.user.id).then(resp => {
+        this.vantagensObtidas = resp;
+      }).catch(error => {
+        console.log(error);
+      });
+    }
+    
+    if (this.user.tipo === 'Empresa') {
+      this.vantagemService.buscarPorEmpresa(this.user.id).then(resp => {
+        this.vantagens = resp;
+      }).catch(error => {
+        console.log(error);
+      });
+    }
+  }
+
+  obterVantagem(vantagem: VantagemModel) {
+    let param: AlunoVantagemModel = {
+      aluno: this.user as AlunoModel,
+      vantagem: vantagem
+    }
+    this.vantagemService.saveAlunoVantagem(param).then(result => {
+      location.reload()
     }).catch(error => {
-      console.log(error);
+      alert('Falha ao obter vantagem.');
     })
   }
 
