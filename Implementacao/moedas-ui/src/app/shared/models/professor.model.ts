@@ -4,5 +4,6 @@ export interface ProfessorModel {
     rg: string,
     login: string,
     senha: string,
-    valorCarteira: number
+    valorCarteira: number,
+    email: string
 }

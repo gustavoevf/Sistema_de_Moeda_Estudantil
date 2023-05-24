@@ -1,5 +1,6 @@
 export interface EmpresaModel {
     id: string,
     nome: string,
-    vantagens: string
+    vantagens: string,
+    email: string
 }

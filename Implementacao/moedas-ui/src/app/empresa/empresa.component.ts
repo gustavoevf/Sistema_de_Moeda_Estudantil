@@ -19,7 +19,8 @@ export class EmpresaComponent implements OnInit {
   title: string = '';
   form: FormGroup = new FormGroup({
     nome: new FormControl({ value: '', disabled: this.action == 'view' }),
-    vantagens: new FormControl({ value: '', disabled: this.action == 'view' })
+    vantagens: new FormControl({ value: '', disabled: this.action == 'view' }),
+    email: new FormControl({ value: '', disabled: this.action == 'view' })
   });
 
   constructor(private empresaService: EmpresaService,

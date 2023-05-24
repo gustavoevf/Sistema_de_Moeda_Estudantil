@@ -13,7 +13,7 @@ public class VantagemDto implements Serializable {
 
     @NotNull
     private String descricao;
-
+    @NotNull
     private String fotoProduto;
 
     @NotNull

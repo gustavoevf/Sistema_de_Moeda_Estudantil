@@ -15,7 +15,7 @@ public class VantagemModel implements Serializable {
     @Column(nullable = false, length = 250)
     private String descricao;
 
-    @Column(nullable = true, columnDefinition="TEXT")
+    @Column(nullable = false, columnDefinition="TEXT")
     private String fotoProduto;
 
     @Column(nullable = false)
