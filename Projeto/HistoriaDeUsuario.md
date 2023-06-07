@@ -12,6 +12,8 @@
 
 - Como aluno, desejo ser capaz de consultar o extrato da minha conta para que eu possa ver o total de moedas que ainda tenho e as transações que eu realizei.
 
+- Como aluno, desejo ser capaz de consultar o relatório de extrato da minha conta, para que eu possa ver o total de moedas que ainda tenho e as transações que eu realizei.
+
 **Professor**
 
 - Como professor, terei um saldo de mil moedas a cada semestre para que eu possa distribuí-las aos meus alunos como forma de reconhecimento pelo bom comportamento, participação em aula e desempenho.
@@ -21,6 +23,8 @@
 - Como professor, irei enviar moedas para os meus alunos, indicando o aluno que irá receber o montante e o motivo pelo qual ele está sendo reconhecido através de uma mensagem aberta obrigatória.
 
 -   Como professor, desejo ser capaz de consultar o extrato da minha conta para que eu possa ver o total de moedas que ainda tenho e as transações que eu realizei.
+
+-   Como professor, desejo ser capaz de consultar o relatório de extrato da minha conta, para que eu possa ver o total de moedas que ainda tenho e as transações que eu realizei.
 
 **Empresa**
     
