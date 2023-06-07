@@ -1,0 +1,73 @@
+<mxfile host="app.diagrams.net" modified="2023-06-07T21:07:49.197Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36" etag="P3O4moXn9bb_UufH46cr" version="21.3.7" type="github">
+  <diagram name="Page-1" id="2YBvvXClWsGukQMizWep">
+    <mxGraphModel dx="1970" dy="425" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="SqmqARdED-hJMlYGhAiN-31" value="Professor" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
+          <mxGeometry x="-430" y="200" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="SqmqARdED-hJMlYGhAiN-32" value="tr:&amp;nbsp; TransacaoController" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="1" vertex="1">
+          <mxGeometry x="60" y="100" width="280" height="420" as="geometry" />
+        </mxCell>
+        <mxCell id="SqmqARdED-hJMlYGhAiN-33" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="SqmqARdED-hJMlYGhAiN-32" vertex="1">
+          <mxGeometry x="135" y="60" width="10" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="SqmqARdED-hJMlYGhAiN-34" value="buscarPorRemetente(UUID id): ResponseEntity&amp;lt;List&amp;lt;TransacaoModel&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;startArrow=oval;endArrow=block;startSize=8;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="SqmqARdED-hJMlYGhAiN-31" target="SqmqARdED-hJMlYGhAiN-33" edge="1">
+          <mxGeometry x="-0.0175" y="10" relative="1" as="geometry">
+            <mxPoint x="10" y="390" as="sourcePoint" />
+            <mxPoint x="210" y="220" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="50" y="220" />
+              <mxPoint y="240" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="SqmqARdED-hJMlYGhAiN-35" value="tr: TransacaoService&amp;nbsp;" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="1" vertex="1">
+          <mxGeometry x="560" y="95" width="220.5" height="420" as="geometry" />
+        </mxCell>
+        <mxCell id="SqmqARdED-hJMlYGhAiN-36" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="SqmqARdED-hJMlYGhAiN-35" vertex="1">
+          <mxGeometry x="105.25" y="60" width="10" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="SqmqARdED-hJMlYGhAiN-38" style="edgeStyle=elbowEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;elbow=vertical;curved=0;" parent="1" source="SqmqARdED-hJMlYGhAiN-33" target="SqmqARdED-hJMlYGhAiN-35" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="SqmqARdED-hJMlYGhAiN-39" value="findBybuscarRemetente(UUID Remetente):&amp;nbsp;List&amp;lt;TransacaoModel&amp;gt;&amp;nbsp;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="255" y="295" width="380" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="tae8RekhbDJZjGjQk9bk-1" value="tr:TransacaoRepository" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="1" vertex="1">
+          <mxGeometry x="1050" y="95" width="220.5" height="420" as="geometry" />
+        </mxCell>
+        <mxCell id="tae8RekhbDJZjGjQk9bk-2" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="tae8RekhbDJZjGjQk9bk-1" vertex="1">
+          <mxGeometry x="105.25" y="60" width="10" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="tae8RekhbDJZjGjQk9bk-3" style="edgeStyle=elbowEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;elbow=vertical;curved=0;" parent="1" source="SqmqARdED-hJMlYGhAiN-36" target="tae8RekhbDJZjGjQk9bk-2" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="215" y="335" as="sourcePoint" />
+            <mxPoint x="680" y="335" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="860" y="420" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tae8RekhbDJZjGjQk9bk-6" value="findByRemetente(@Param(&quot;Remetente&quot;) UUID id); List&amp;lt;TransacaoModel&amp;gt;&amp;nbsp;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="710" y="390" width="420" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="tae8RekhbDJZjGjQk9bk-4" value="Return" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" parent="1" source="SqmqARdED-hJMlYGhAiN-36" target="SqmqARdED-hJMlYGhAiN-32" edge="1">
+          <mxGeometry x="0.0102" y="-20" width="160" relative="1" as="geometry">
+            <mxPoint x="910" y="350" as="sourcePoint" />
+            <mxPoint x="1070" y="350" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="430" y="360" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BmhdE5B8ZWabFLqVJc3m-2" value="Envio moedas" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;width=180;height=40;" parent="1" vertex="1">
+          <mxGeometry x="-480" y="20" width="1780" height="570" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
