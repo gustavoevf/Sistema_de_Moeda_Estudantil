@@ -24,7 +24,10 @@ getTestBed().initTestEnvironment(
   platformBrowserDynamicTesting()
 );
 
-// Then we find all the tests.
-const context = require.context('./', true, /\.spec\.ts$/);
-// And load the modules.
-context.keys().map(context);
+// Dynamically import all .spec.ts files (Angular 15+)
+const specs = (window as any)['__karma__']?.files ?? {};
+Object.keys(specs)
+  .filter(file => file.endsWith('.spec.ts'))
+  .forEach(file => {
+    import(file);
+  });

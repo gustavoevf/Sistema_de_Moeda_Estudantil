@@ -1,13 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { TransacaoModel } from '../shared/models/transacao.model';
 import { TransacaoService } from '../shared/services/transacao.service';
-import { ProfessorModel } from '../shared/models/professor.model';
 import { AlunoModel } from '../shared/models/aluno.model';
 import { AlunoService } from '../shared/services/aluno.service';
-import { ProfessorService } from '../shared/services/professor.service';
-import { GlobalService } from '../shared/services/global.service';
 
 @Component({
   selector: 'app-transacoes',
@@ -41,11 +37,8 @@ export class TransacoesComponent implements OnInit {
   user: any = {};
 
   constructor(
-    private transacaoService: TransacaoService,
-    private alunoService: AlunoService,
-    private professorService: ProfessorService,
-    private router: Router,
-    private globalService: GlobalService
+    private readonly transacaoService: TransacaoService,
+    private readonly alunoService: AlunoService
   ) {}
 
   ngOnInit(): void {
@@ -71,11 +64,11 @@ export class TransacoesComponent implements OnInit {
                 id: this.form.controls['destinatario'].value.toString(),
               },
             })
-            .then(resp => {
+            .then(() => {
               this.switchAction();
               this.getTransacoes();
             })
-            .catch(error => {
+            .catch(() => {
               alert('Saldo insuficiente');
               this.switchAction();
             });
@@ -92,11 +85,11 @@ export class TransacoesComponent implements OnInit {
               },
               this.transacaoSelecionada.id
             )
-            .then(resp => {
+            .then(() => {
               this.getTransacoes();
               this.switchAction();
             })
-            .catch(error => {
+            .catch(() => {
               this.switchAction();
             });
           break;
@@ -110,8 +103,8 @@ export class TransacoesComponent implements OnInit {
   deletar(transacao: TransacaoModel) {
     this.transacaoService
       .deleteTransacao(transacao.id)
-      .then(resp => this.getTransacoes())
-      .catch(error => this.getTransacoes());
+      .then(() => this.getTransacoes())
+      .catch(() => this.getTransacoes());
   }
 
   setAction(action: string, transacao: TransacaoModel | null = null) {

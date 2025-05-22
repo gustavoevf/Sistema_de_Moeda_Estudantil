@@ -1,9 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
 import { VantagemService } from '../shared/services/vantagem.service';
 import { VantagemModel } from '../shared/models/vantagem.model';
-import { GlobalService } from '../shared/services/global.service';
 import { AlunoVantagemModel } from '../shared/models/alunoVantagem.model';
 import { AlunoModel } from '../shared/models/aluno.model';
 
@@ -31,11 +29,7 @@ export class VantagensComponent implements OnInit {
     }),
   });
 
-  constructor(
-    private vantagemService: VantagemService,
-    private router: Router,
-    private globalService: GlobalService
-  ) {}
+  constructor(private readonly vantagemService: VantagemService) {}
 
   user: any = {};
 

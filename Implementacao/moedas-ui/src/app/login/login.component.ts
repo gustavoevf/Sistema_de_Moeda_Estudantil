@@ -22,7 +22,7 @@ export class LoginComponent {
         localStorage.setItem('@User', JSON.stringify(result));
         location.reload();
       })
-      .catch(error => {
+      .catch(_error => {
         alert('Falha ao realizar login. Verifique usuário e senha.');
       });
   }
