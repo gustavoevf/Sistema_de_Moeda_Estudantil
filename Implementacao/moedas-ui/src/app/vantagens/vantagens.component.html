@@ -1,64 +1,102 @@
 <div class="p-5 pt-3" *ngIf="!showAction">
-    <div class="d-flex justify-content-end" *ngIf="user.tipo === 'Empresa'">
-        <button type="button" class="btn btn-primary" (click)="setAction('create')">+ Nova
-            Vantagem</button>
-    </div>
-    <h2 class="pt-2" *ngIf="user.tipo === 'Aluno'">Moedas: + {{user.valorCarteira}}</h2>
-    <h2 class="pt-2" *ngIf="user.tipo === 'Aluno'">Vantagens disponíveis</h2>
-    <table class="table table-striped mt-3">
-        <thead>
-            <tr>
-                <th scope="col">Descricao</th>
-                <th scope="col">Custo</th>
-                <th scope="col">Foto</th>
-                <th scope="col" *ngIf="user.tipo === 'Aluno'">Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let vantagem of vantagens">
-                <td>{{vantagem.descricao}}</td>
-                <td>{{vantagem.custo}}</td>
-                <td><img style="max-width: 50px;" src={{vantagem.fotoProduto}} alt=""></td>
-                <td *ngIf="user.tipo === 'Aluno'"><button type="button" class="btn btn-primary m-1"
-                        (click)="obterVantagem(vantagem)">Obter</button></td>
-            </tr>
-        </tbody>
-    </table>
-    <h2 *ngIf="user.tipo === 'Aluno'" class="pt-2">Vantagens obtidas</h2>
-    <table *ngIf="user.tipo === 'Aluno'" class="table table-striped mt-3">
-        <thead>
-            <tr>
-                <th scope="col">Descricao</th>
-                <th scope="col">Custo</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let obtida of vantagensObtidas">
-                <td>{{obtida.vantagem.descricao}}</td>
-                <td>{{obtida.vantagem.custo}}</td>
-            </tr>
-        </tbody>
-    </table>
+  <div class="d-flex justify-content-end" *ngIf="user.tipo === 'Empresa'">
+    <button type="button" class="btn btn-primary" (click)="setAction('create')">
+      + Nova Vantagem
+    </button>
+  </div>
+  <h2 class="pt-2" *ngIf="user.tipo === 'Aluno'">
+    Moedas: + {{ user.valorCarteira }}
+  </h2>
+  <h2 class="pt-2" *ngIf="user.tipo === 'Aluno'">Vantagens disponíveis</h2>
+  <table class="table table-striped mt-3">
+    <thead>
+      <tr>
+        <th scope="col">Descricao</th>
+        <th scope="col">Custo</th>
+        <th scope="col">Foto</th>
+        <th scope="col" *ngIf="user.tipo === 'Aluno'">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let vantagem of vantagens">
+        <td>{{ vantagem.descricao }}</td>
+        <td>{{ vantagem.custo }}</td>
+        <td>
+          <img
+            style="max-width: 50px"
+            src="{{ vantagem.fotoProduto }}"
+            alt="" />
+        </td>
+        <td *ngIf="user.tipo === 'Aluno'">
+          <button
+            type="button"
+            class="btn btn-primary m-1"
+            (click)="obterVantagem(vantagem)">
+            Obter
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h2 *ngIf="user.tipo === 'Aluno'" class="pt-2">Vantagens obtidas</h2>
+  <table *ngIf="user.tipo === 'Aluno'" class="table table-striped mt-3">
+    <thead>
+      <tr>
+        <th scope="col">Descricao</th>
+        <th scope="col">Custo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let obtida of vantagensObtidas">
+        <td>{{ obtida.vantagem.descricao }}</td>
+        <td>{{ obtida.vantagem.custo }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-<div *ngIf="showAction" class="p-5 d-flex justify-content-center align-items-center">
-    <div class="card col-8">
-        <h5 class="card-header">{{title}}</h5>
-        <div class="card-body">
-            <form [formGroup]="form">
-                <label for="descricao" class="form-label">Descricao</label>
-                <input type="text" id="descricao" class="form-control" aria-labelledby="descricaoInput"
-                    [disabled]="action == 'view'" formControlName="descricao">
-                <label for="custo" class="form-label">Custo</label>
-                <input type="number" id="custo" class="form-control" aria-labelledby="custoInput"
-                    [disabled]="action == 'view'" formControlName="custo">
-                <label for="custo" class="form-label">Foto</label>
-                <input type="text" id="fotoProduto" class="form-control" aria-labelledby="fotoProdutoInput"
-                    [disabled]="action == 'view'" formControlName="fotoProduto">
-            </form>
-            <div class="mt-2">
-                <button type="button" class="btn btn-secondary" (click)="switchAction()">Fechar</button>
-                <button type="button" class="btn btn-primary ms-1" (click)="salvar()">Salvar</button>
-            </div>
-        </div>
+<div
+  *ngIf="showAction"
+  class="p-5 d-flex justify-content-center align-items-center">
+  <div class="card col-8">
+    <h5 class="card-header">{{ title }}</h5>
+    <div class="card-body">
+      <form [formGroup]="form">
+        <label for="descricao" class="form-label">Descricao</label>
+        <input
+          type="text"
+          id="descricao"
+          class="form-control"
+          aria-labelledby="descricaoInput"
+          [disabled]="action == 'view'"
+          formControlName="descricao" />
+        <label for="custo" class="form-label">Custo</label>
+        <input
+          type="number"
+          id="custo"
+          class="form-control"
+          aria-labelledby="custoInput"
+          [disabled]="action == 'view'"
+          formControlName="custo" />
+        <label for="custo" class="form-label">Foto</label>
+        <input
+          type="text"
+          id="fotoProduto"
+          class="form-control"
+          aria-labelledby="fotoProdutoInput"
+          [disabled]="action == 'view'"
+          formControlName="fotoProduto" />
+      </form>
+      <div class="mt-2">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="switchAction()">
+          Fechar
+        </button>
+        <button type="button" class="btn btn-primary ms-1" (click)="salvar()">
+          Salvar
+        </button>
+      </div>
     </div>
+  </div>
 </div>

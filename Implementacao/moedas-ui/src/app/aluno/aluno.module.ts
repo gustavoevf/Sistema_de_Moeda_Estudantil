@@ -5,16 +5,8 @@ import { AlunoRoutingModule } from './aluno-routing.module';
 import { AlunoComponent } from './aluno.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-
 @NgModule({
-  declarations: [
-    AlunoComponent
-  ],
-  imports: [
-    CommonModule,
-    AlunoRoutingModule,
-    FormsModule,
-    ReactiveFormsModule
-  ]
+  declarations: [AlunoComponent],
+  imports: [CommonModule, AlunoRoutingModule, FormsModule, ReactiveFormsModule],
 })
-export class AlunoModule { }
+export class AlunoModule {}

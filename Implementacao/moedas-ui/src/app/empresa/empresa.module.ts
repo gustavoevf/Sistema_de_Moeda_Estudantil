@@ -5,16 +5,13 @@ import { EmpresaRoutingModule } from './empresa-routing.module';
 import { EmpresaComponent } from './empresa.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-
 @NgModule({
-  declarations: [
-    EmpresaComponent
-  ],
+  declarations: [EmpresaComponent],
   imports: [
     CommonModule,
     EmpresaRoutingModule,
     FormsModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+  ],
 })
-export class EmpresaModule { }
+export class EmpresaModule {}

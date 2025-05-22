@@ -4,11 +4,11 @@ import { LoginComponent } from './login.component';
 import { UserGuard } from '../shared/guards/user.guard';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent, canActivate: [UserGuard] }
+  { path: 'login', component: LoginComponent, canActivate: [UserGuard] },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class LoginRoutingModule { }
+export class LoginRoutingModule {}

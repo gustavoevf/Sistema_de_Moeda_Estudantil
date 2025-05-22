@@ -4,17 +4,13 @@ import { VantagensComponent } from './vantagens.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VantagensRoutingModule } from './vantagens-routing.module';
 
-
-
 @NgModule({
-  declarations: [
-    VantagensComponent
-  ],
+  declarations: [VantagensComponent],
   imports: [
     CommonModule,
     VantagensRoutingModule,
     FormsModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+  ],
 })
-export class VantagensModule { }
+export class VantagensModule {}

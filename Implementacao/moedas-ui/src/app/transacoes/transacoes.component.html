@@ -1,46 +1,74 @@
 <div class="p-5 pt-3" *ngIf="!showAction">
-    <div class="d-flex justify-content-end">
-        <button type="button" class="btn btn-primary" (click)="setAction('create')">+ Nova
-            Transação</button>
-    </div>
-    <table class="table table-hover mt-3">
-        <thead>
-            <tr>
-                <th scope="col">Destinatário</th>
-                <th scope="col">Descrição</th>
-                <th scope="col">Valor</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let transacao of transacoes">
-                <td>{{transacao.destinatario.nome}}</td>
-                <td>{{transacao.descricao}}</td>
-                <td>{{transacao.valor}}</td>
-            </tr>
-        </tbody>
-    </table>
+  <div class="d-flex justify-content-end">
+    <button type="button" class="btn btn-primary" (click)="setAction('create')">
+      + Nova Transação
+    </button>
+  </div>
+  <table class="table table-hover mt-3">
+    <thead>
+      <tr>
+        <th scope="col">Destinatário</th>
+        <th scope="col">Descrição</th>
+        <th scope="col">Valor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let transacao of transacoes">
+        <td>{{ transacao.destinatario.nome }}</td>
+        <td>{{ transacao.descricao }}</td>
+        <td>{{ transacao.valor }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-<div *ngIf="showAction" class="p-5 d-flex justify-content-center align-items-center">
-    <div class="card col-8">
-        <h5 class="card-header">{{title}}</h5>
-        <div class="card-body">
-            <form [formGroup]="form">
-                <label for="destinatario" class="form-label">Destinatário</label>
-                <select id="destinatario" name="destinatario" class="form-select form-control"
-                    formControlName="destinatario" aria-label="select destinatario">
-                    <option *ngFor="let aluno of alunos" [value]="aluno.id">{{aluno.nome}}</option>
-                </select>
-                <label for="descricao" class="form-label">Descricao</label>
-                <input type="text" id="descricao" class="form-control" aria-labelledby="descricaoInput"
-                    [disabled]="action == 'view'" formControlName="descricao" [value]="transacaoSelecionada?.descricao">
-                <label for="valor" class="form-label">Valor</label>
-                <input type="number" id="valor" class="form-control" aria-labelledby="valorInput"
-                    [disabled]="action == 'view'" formControlName="valor" [value]="transacaoSelecionada?.valor">
-            </form>
-            <div class="mt-2">
-                <button type="button" class="btn btn-secondary" (click)="switchAction()">Fechar</button>
-                <button type="button" class="btn btn-primary ms-1" (click)="salvar()">Salvar</button>
-            </div>
-        </div>
+<div
+  *ngIf="showAction"
+  class="p-5 d-flex justify-content-center align-items-center">
+  <div class="card col-8">
+    <h5 class="card-header">{{ title }}</h5>
+    <div class="card-body">
+      <form [formGroup]="form">
+        <label for="destinatario" class="form-label">Destinatário</label>
+        <select
+          id="destinatario"
+          name="destinatario"
+          class="form-select form-control"
+          formControlName="destinatario"
+          aria-label="select destinatario">
+          <option *ngFor="let aluno of alunos" [value]="aluno.id">
+            {{ aluno.nome }}
+          </option>
+        </select>
+        <label for="descricao" class="form-label">Descricao</label>
+        <input
+          type="text"
+          id="descricao"
+          class="form-control"
+          aria-labelledby="descricaoInput"
+          [disabled]="action == 'view'"
+          formControlName="descricao"
+          [value]="transacaoSelecionada?.descricao" />
+        <label for="valor" class="form-label">Valor</label>
+        <input
+          type="number"
+          id="valor"
+          class="form-control"
+          aria-labelledby="valorInput"
+          [disabled]="action == 'view'"
+          formControlName="valor"
+          [value]="transacaoSelecionada?.valor" />
+      </form>
+      <div class="mt-2">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="switchAction()">
+          Fechar
+        </button>
+        <button type="button" class="btn btn-primary ms-1" (click)="salvar()">
+          Salvar
+        </button>
+      </div>
     </div>
+  </div>
 </div>

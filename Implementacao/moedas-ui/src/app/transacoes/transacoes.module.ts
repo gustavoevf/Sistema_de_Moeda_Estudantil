@@ -5,14 +5,12 @@ import { TransacoesRoutingModule } from './transacoes-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
-    TransacoesComponent
-  ],
+  declarations: [TransacoesComponent],
   imports: [
     CommonModule,
     TransacoesRoutingModule,
     FormsModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+  ],
 })
-export class TransacoesModule { }
+export class TransacoesModule {}

@@ -1,44 +1,76 @@
 <div class="p-5 pt-3" *ngIf="!showAction">
-    <div class="d-flex justify-content-end">
-        <button type="button" class="btn btn-primary" (click)="setAction('create')">+ Nova
-            Empresa</button>
-    </div>
-    <table class="table table-striped mt-3">
-        <thead>
-            <tr>
-                <th scope="col">Nome</th>
-                <th scope="col">Email</th>
-                <th scope="col">Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let empresa of empresas">
-                <td>{{empresa.nome}}</td>
-                <td>{{empresa.email}}</td>
-                <td>
-                    <button type="button" class="btn btn-primary m-1" (click)="setAction('edit', empresa)">Editar</button>
-                    <button type="button" class="btn btn-danger m-1" (click)="deletar(empresa)">Deletar</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+  <div class="d-flex justify-content-end">
+    <button type="button" class="btn btn-primary" (click)="setAction('create')">
+      + Nova Empresa
+    </button>
+  </div>
+  <table class="table table-striped mt-3">
+    <thead>
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">Email</th>
+        <th scope="col">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let empresa of empresas">
+        <td>{{ empresa.nome }}</td>
+        <td>{{ empresa.email }}</td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-primary m-1"
+            (click)="setAction('edit', empresa)">
+            Editar
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger m-1"
+            (click)="deletar(empresa)">
+            Deletar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-<div *ngIf="showAction" class="p-5 d-flex justify-content-center align-items-center">
-    <div class="card col-8">
-        <h5 class="card-header">{{title}}</h5>
-        <div class="card-body">
-            <form [formGroup]="form">
-                <label for="nome" class="form-label">Nome</label>
-                <input type="text" id="nome" class="form-control" aria-labelledby="nomeInput"
-                    [disabled]="action == 'view'" formControlName="nome" [value]="empresaSelecionada?.nome">
-                <label for="nome" class="form-label">Email</label>
-                <input type="text" id="email" class="form-control" aria-labelledby="emailInput"
-                    [disabled]="action == 'view'" formControlName="email" [value]="empresaSelecionada?.email">
-            </form>
-            <div class="mt-2">
-                <button type="button" class="btn btn-secondary" (click)="switchAction()">Fechar</button>
-                <button type="button" class="btn btn-primary ms-1" (click)="salvar()">Salvar</button>
-            </div>
-        </div>
+<div
+  *ngIf="showAction"
+  class="p-5 d-flex justify-content-center align-items-center">
+  <div class="card col-8">
+    <h5 class="card-header">{{ title }}</h5>
+    <div class="card-body">
+      <form [formGroup]="form">
+        <label for="nome" class="form-label">Nome</label>
+        <input
+          type="text"
+          id="nome"
+          class="form-control"
+          aria-labelledby="nomeInput"
+          [disabled]="action == 'view'"
+          formControlName="nome"
+          [value]="empresaSelecionada.nome" />
+        <label for="nome" class="form-label">Email</label>
+        <input
+          type="text"
+          id="email"
+          class="form-control"
+          aria-labelledby="emailInput"
+          [disabled]="action == 'view'"
+          formControlName="email"
+          [value]="empresaSelecionada.email" />
+      </form>
+      <div class="mt-2">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="switchAction()">
+          Fechar
+        </button>
+        <button type="button" class="btn btn-primary ms-1" (click)="salvar()">
+          Salvar
+        </button>
+      </div>
     </div>
+  </div>
 </div>

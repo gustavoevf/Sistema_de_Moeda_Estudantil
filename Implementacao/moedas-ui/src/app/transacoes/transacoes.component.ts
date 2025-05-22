@@ -12,7 +12,7 @@ import { GlobalService } from '../shared/services/global.service';
 @Component({
   selector: 'app-transacoes',
   templateUrl: './transacoes.component.html',
-  styleUrls: ['./transacoes.component.less']
+  styleUrls: ['./transacoes.component.less'],
 })
 export class TransacoesComponent implements OnInit {
   @ViewChild('closeButton') closeButton: any;
@@ -24,18 +24,29 @@ export class TransacoesComponent implements OnInit {
   action: string = 'edit';
   title: string = '';
   form: FormGroup = new FormGroup({
-    destinatario: new FormControl({ value: '', disabled: this.action == 'view' }, Validators.required),
-    valor: new FormControl({ value: '', disabled: this.action == 'view' }, Validators.min(0)),
-    descricao: new FormControl({ value: '', disabled: this.action == 'view' }, Validators.required)
+    destinatario: new FormControl(
+      { value: '', disabled: this.action == 'view' },
+      Validators.required
+    ),
+    valor: new FormControl(
+      { value: '', disabled: this.action == 'view' },
+      Validators.min(0)
+    ),
+    descricao: new FormControl(
+      { value: '', disabled: this.action == 'view' },
+      Validators.required
+    ),
   });
 
   user: any = {};
 
-  constructor(private transacaoService: TransacaoService,
+  constructor(
+    private transacaoService: TransacaoService,
     private alunoService: AlunoService,
     private professorService: ProfessorService,
     private router: Router,
-    private globalService: GlobalService) { }
+    private globalService: GlobalService
+  ) {}
 
   ngOnInit(): void {
     let obLocalStorage = localStorage.getItem('@User');
@@ -48,34 +59,46 @@ export class TransacoesComponent implements OnInit {
 
   salvar() {
     if (this.form.invalid) {
-      alert("Verifique o preenchimento dos campos");
+      alert('Verifique o preenchimento dos campos');
     } else {
       switch (this.action) {
         case 'create':
-          this.transacaoService.saveTransacao({
-            ...this.form.value,
-            remetente: { id: this.user.id },
-            destinatario: { id: this.form.controls['destinatario'].value.toString() }
-          }).then(resp => {
-            this.switchAction();
-            this.getTransacoes();
-          }).catch(error => {
-            alert("Saldo insuficiente");
-            this.switchAction();
-          });
+          this.transacaoService
+            .saveTransacao({
+              ...this.form.value,
+              remetente: { id: this.user.id },
+              destinatario: {
+                id: this.form.controls['destinatario'].value.toString(),
+              },
+            })
+            .then(resp => {
+              this.switchAction();
+              this.getTransacoes();
+            })
+            .catch(error => {
+              alert('Saldo insuficiente');
+              this.switchAction();
+            });
           break;
         case 'edit':
-          this.transacaoService.updateTransacao({
-            ...this.form.value,
-            remetente: { id: this.user.id },
-            destinatario: { id: this.form.controls['destinatario'].value.toString() }
-          }, this.transacaoSelecionada.id
-          ).then(resp => {
-            this.getTransacoes();
-            this.switchAction();
-          }).catch(error => {
-            this.switchAction();
-          });;
+          this.transacaoService
+            .updateTransacao(
+              {
+                ...this.form.value,
+                remetente: { id: this.user.id },
+                destinatario: {
+                  id: this.form.controls['destinatario'].value.toString(),
+                },
+              },
+              this.transacaoSelecionada.id
+            )
+            .then(resp => {
+              this.getTransacoes();
+              this.switchAction();
+            })
+            .catch(error => {
+              this.switchAction();
+            });
           break;
 
         default:
@@ -85,32 +108,29 @@ export class TransacoesComponent implements OnInit {
   }
 
   deletar(transacao: TransacaoModel) {
-    this.transacaoService.deleteTransacao(transacao.id).then(
-      resp => this.getTransacoes()
-    ).catch(error =>
-      this.getTransacoes()
-    )
+    this.transacaoService
+      .deleteTransacao(transacao.id)
+      .then(resp => this.getTransacoes())
+      .catch(error => this.getTransacoes());
   }
 
   setAction(action: string, transacao: TransacaoModel | null = null) {
     this.action = action;
     switch (action) {
       case 'view':
-        this.title = 'Visualizar Transacao'
-        if (transacao)
-          this.transacaoSelecionada = transacao;
+        this.title = 'Visualizar Transacao';
+        if (transacao) this.transacaoSelecionada = transacao;
         this.showAction = true;
         break;
 
       case 'edit':
-        this.title = 'Editar Transacao'
-        if (transacao)
-          this.transacaoSelecionada = transacao;
+        this.title = 'Editar Transacao';
+        if (transacao) this.transacaoSelecionada = transacao;
         this.showAction = true;
         break;
 
       case 'create':
-        this.title = 'Incluir Transacao'
+        this.title = 'Incluir Transacao';
         this.showAction = true;
         break;
 
@@ -120,19 +140,25 @@ export class TransacoesComponent implements OnInit {
   }
 
   getTransacoes() {
-    this.transacaoService.buscarPorRemetente(this.user.id).then(resp => {
-      this.transacoes = resp;
-    }).catch(error => {
-      console.log(error);
-    })
+    this.transacaoService
+      .buscarPorRemetente(this.user.id)
+      .then(resp => {
+        this.transacoes = resp;
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   getAlunos() {
-    this.alunoService.getAllAluno().then(resp => {
-      this.alunos = resp.content;
-    }).catch(error => {
-      console.log(error);
-    })
+    this.alunoService
+      .getAllAluno()
+      .then(resp => {
+        this.alunos = resp.content;
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   switchAction() {
@@ -140,7 +166,6 @@ export class TransacoesComponent implements OnInit {
   }
 
   canSave(): boolean {
-    return this.action !== 'view'
+    return this.action !== 'view';
   }
-
 }

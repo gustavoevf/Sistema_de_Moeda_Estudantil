@@ -1,13 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
 import { EmpresaModel } from '../shared/models/empresa.model';
 import { EmpresaService } from '../shared/services/empresa.service';
 
 @Component({
   selector: 'app-empresa',
   templateUrl: './empresa.component.html',
-  styleUrls: ['./empresa.component.less']
+  styleUrls: ['./empresa.component.less'],
 })
 export class EmpresaComponent implements OnInit {
   @ViewChild('closeButton') closeButton: any;
@@ -19,11 +18,10 @@ export class EmpresaComponent implements OnInit {
   title: string = '';
   form: FormGroup = new FormGroup({
     nome: new FormControl({ value: '', disabled: this.action == 'view' }),
-    email: new FormControl({ value: '', disabled: this.action == 'view' })
+    email: new FormControl({ value: '', disabled: this.action == 'view' }),
   });
 
-  constructor(private empresaService: EmpresaService,
-    private router: Router) { }
+  constructor(private readonly empresaService: EmpresaService) {}
 
   ngOnInit(): void {
     this.getEmpresas();
@@ -32,20 +30,26 @@ export class EmpresaComponent implements OnInit {
   salvar() {
     switch (this.action) {
       case 'create':
-        this.empresaService.saveEmpresa(this.form.value).then(resp => {
-          this.switchAction();
-          this.getEmpresas();
-        }).catch(error => {
-          this.switchAction();
-        });
+        this.empresaService
+          .saveEmpresa(this.form.value)
+          .then(_resp => {
+            this.switchAction();
+            this.getEmpresas();
+          })
+          .catch(_error => {
+            this.switchAction();
+          });
         break;
       case 'edit':
-        this.empresaService.updateEmpresa(this.form.value, this.empresaSelecionada.id).then(resp => {
-          this.getEmpresas();
-          this.switchAction();
-        }).catch(error => {
-          this.switchAction();
-        });;
+        this.empresaService
+          .updateEmpresa(this.form.value, this.empresaSelecionada.id)
+          .then(_resp => {
+            this.getEmpresas();
+            this.switchAction();
+          })
+          .catch(_error => {
+            this.switchAction();
+          });
         break;
 
       default:
@@ -54,32 +58,29 @@ export class EmpresaComponent implements OnInit {
   }
 
   deletar(empresa: EmpresaModel) {
-    this.empresaService.deleteEmpresa(empresa.id).then(
-      resp => this.getEmpresas()
-    ).catch(error =>
-      this.getEmpresas()
-    )
+    this.empresaService
+      .deleteEmpresa(empresa.id)
+      .then(_resp => this.getEmpresas())
+      .catch(_error => this.getEmpresas());
   }
 
   setAction(action: string, empresa: EmpresaModel | null = null) {
     this.action = action;
     switch (action) {
       case 'view':
-        this.title = 'Visualizar Empresa'
-        if (empresa)
-          this.empresaSelecionada = empresa;
+        this.title = 'Visualizar Empresa';
+        if (empresa) this.empresaSelecionada = empresa;
         this.showAction = true;
         break;
 
       case 'edit':
-        this.title = 'Editar Empresa'
-        if (empresa)
-          this.empresaSelecionada = empresa;
+        this.title = 'Editar Empresa';
+        if (empresa) this.empresaSelecionada = empresa;
         this.showAction = true;
         break;
 
       case 'create':
-        this.title = 'Incluir Empresa'
+        this.title = 'Incluir Empresa';
         this.showAction = true;
         break;
 
@@ -89,11 +90,14 @@ export class EmpresaComponent implements OnInit {
   }
 
   getEmpresas() {
-    this.empresaService.getAllEmpresa().then(resp => {
-      this.empresas = resp.content;
-    }).catch(error => {
-      console.log(error);
-    })
+    this.empresaService
+      .getAllEmpresa()
+      .then(resp => {
+        this.empresas = resp.content;
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   switchAction() {
@@ -101,7 +105,6 @@ export class EmpresaComponent implements OnInit {
   }
 
   canSave(): boolean {
-    return this.action !== 'view'
+    return this.action !== 'view';
   }
-
 }

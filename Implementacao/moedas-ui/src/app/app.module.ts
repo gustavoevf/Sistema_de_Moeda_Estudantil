@@ -12,10 +12,7 @@ import { TransacoesModule } from './transacoes/transacoes.module';
 import { VantagensModule } from './vantagens/vantagens.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent
-  ],
+  declarations: [AppComponent, HeaderComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -24,10 +21,9 @@ import { VantagensModule } from './vantagens/vantagens.module';
     AlunoModule,
     EmpresaModule,
     TransacoesModule,
-    VantagensModule
-    
+    VantagensModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
