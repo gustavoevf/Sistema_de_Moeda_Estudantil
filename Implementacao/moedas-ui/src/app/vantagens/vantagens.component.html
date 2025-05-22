@@ -67,7 +67,7 @@
           id="descricao"
           class="form-control"
           aria-labelledby="descricaoInput"
-          [disabled]="action == 'view'"
+          [disabled]="action === 'view'"
           formControlName="descricao" />
         <label for="custo" class="form-label">Custo</label>
         <input
@@ -75,7 +75,7 @@
           id="custo"
           class="form-control"
           aria-labelledby="custoInput"
-          [disabled]="action == 'view'"
+          [disabled]="action === 'view'"
           formControlName="custo" />
         <label for="custo" class="form-label">Foto</label>
         <input
@@ -83,7 +83,7 @@
           id="fotoProduto"
           class="form-control"
           aria-labelledby="fotoProdutoInput"
-          [disabled]="action == 'view'"
+          [disabled]="action === 'view'"
           formControlName="fotoProduto" />
       </form>
       <div class="mt-2">
