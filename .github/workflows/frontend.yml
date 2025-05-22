@@ -36,5 +36,5 @@ jobs:
 
       - name: Deploy to GitHub Pages
         if: github.ref == 'refs/heads/main'
-        run: npm run deploy -- --no-silent --c=production --base-href /moedas-ui/
+        run: npm run deploy -- --no-silent --configuration production --base-href /moedas-ui/
         working-directory: Implementacao/moedas-ui
