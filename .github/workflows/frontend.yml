@@ -14,8 +14,13 @@ jobs:
       - name: Check if relevant files changed
         id: changes
         run: |
-          git fetch origin ${{ github.base_ref }} --depth=1
-          CHANGED=$(git diff --name-only origin/${{ github.base_ref }} ${{ github.sha }} | grep -E '^(Implementacao/moedas-ui/|\.github/workflows/frontend\.yml)')
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            git fetch origin ${{ github.base_ref }} --depth=1
+            BASE=origin/${{ github.base_ref }}
+          else
+            BASE=${{ github.sha }}^
+          fi
+          CHANGED=$(git diff --name-only $BASE ${{ github.sha }} | grep -E '^(Implementacao/moedas-ui/|\.github/workflows/frontend\.yml)')
           if [ -z "$CHANGED" ]; then
             echo "No relevant changes detected. Skipping build."
             exit 78
