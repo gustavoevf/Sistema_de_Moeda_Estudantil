@@ -4,10 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --base-href /moedas-ui/",
+    "build": "ng build --base-href /Sistema_de_Moeda_Estudantil/",
+    "deploy": "ng build --base-href /Sistema_de_Moeda_Estudantil/ && npx angular-cli-ghpages --dir=dist/moedas-ui",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "deploy": "ng build --base-href /moedas-ui/ && npx angular-cli-ghpages --dir=dist/moedas-ui",
     "lint": "ng lint",
     "prettier": "npx prettier --write .",
     "prettier-check": "npx prettier --check ."
