@@ -35,7 +35,7 @@ jobs:
         working-directory: Implementacao/moedas-ui
 
       - name: Build
-        run: npm run build
+        run: npm run build -- --base-href /Sistema_de_Moeda_Estudantil/
         working-directory: Implementacao/moedas-ui
 
       - name: Set up Git user
