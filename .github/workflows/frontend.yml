@@ -50,3 +50,15 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run deploy -- --no-silent
         working-directory: Implementacao/moedas-ui
+
+      - name: Create Pull Request to Parent Branch
+        if: github.ref != 'refs/heads/main'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "ci: automated PR from ${{ github.ref_name }} to main"
+          branch: ${{ github.ref_name }}
+          base: main
+          title: "Automated PR: Merge ${{ github.ref_name }} into main"
+          body: |
+            This pull request was created automatically by the CI workflow to merge changes from `${{ github.ref_name }}` into `main`.
