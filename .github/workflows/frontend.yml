@@ -2,13 +2,7 @@ name: Angular CI
 
 on:
   push:
-    paths:
-      - "Implementacao/moedas-ui/**"
-      - ".github/workflows/frontend.yml"
   pull_request:
-    paths:
-      - "Implementacao/moedas-ui/**"
-      - ".github/workflows/frontend.yml"
 
 jobs:
   build:
@@ -16,6 +10,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
+      - name: Check if relevant files changed
+        id: changes
+        run: |
+          git fetch origin ${{ github.base_ref }} --depth=1
+          CHANGED=$(git diff --name-only origin/${{ github.base_ref }} ${{ github.sha }} | grep -E '^(Implementacao/moedas-ui/|\.github/workflows/frontend\.yml)')
+          if [ -z "$CHANGED" ]; then
+            echo "No relevant changes detected. Skipping build."
+            exit 78
+          fi
 
       - name: Use Node.js 18.x
         uses: actions/setup-node@v3
