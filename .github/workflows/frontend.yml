@@ -2,9 +2,13 @@ name: Angular CI
 
 on:
   push:
-    branches: [main]
+    paths:
+      - "Implementacao/moedas-ui/**"
+      - ".github/workflows/frontend.yml"
   pull_request:
-    branches: [main]
+    paths:
+      - "Implementacao/moedas-ui/**"
+      - ".github/workflows/frontend.yml"
 
 jobs:
   build:
@@ -36,8 +40,8 @@ jobs:
 
       - name: Set up Git user
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "gustavoevf"
+          git config --global user.email "gustavoevf@gmail.com"
         working-directory: Implementacao/moedas-ui
 
       - name: Deploy to GitHub Pages
