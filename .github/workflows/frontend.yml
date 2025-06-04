@@ -22,7 +22,7 @@ jobs:
           else
             BASE=${{ github.sha }}^
           fi
-          CHANGED=$(git diff --name-only $BASE ${{ github.sha }} | grep -E '^(Implementacao/moedas-ui/|\.github/workflows/frontend\.yml)')
+          CHANGED=$(git diff --name-only $BASE ${{ github.sha }} | grep -E '^(Implementacao/moedas-ui/|\.github/workflows/frontend\.yml)' || true)
           if [ -z "$CHANGED" ]; then
             echo "No relevant changes detected. Skipping build."
             exit 78
