@@ -39,6 +39,7 @@ jobs:
         id: prcheck
         env:
           GH_TOKEN: ${{ github.token }}
+        shell: bash
         run: |
           BRANCH="${GITHUB_REF#refs/heads/}"
           PR_EXISTS=$(gh pr list --base main --head "$BRANCH" --state open --json number --jq 'length')
