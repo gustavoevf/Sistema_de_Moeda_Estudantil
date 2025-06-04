@@ -47,6 +47,7 @@ jobs:
             echo "pr=true" >> $GITHUB_OUTPUT
           else
             echo "pr=false" >> $GITHUB_OUTPUT
+          fi
 
   frontend:
     needs: decide
