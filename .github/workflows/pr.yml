@@ -1,9 +1,7 @@
 name: Pull Request Creation
 
 on:
-  push:
-    branches-ignore:
-      - main
+  workflow_call:
 
 jobs:
   create_pull_request:

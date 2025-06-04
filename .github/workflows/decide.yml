@@ -1,0 +1,65 @@
+name: Decide Which CI to Run
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  decide:
+    runs-on: ubuntu-latest
+    outputs:
+      frontend: ${{ steps.filter.outputs.frontend }}
+      backend: ${{ steps.filter.outputs.backend }}
+      pr: ${{ steps.filter.outputs.pr }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Get changed files
+        id: changes
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            git fetch origin ${{ github.base_ref }} --depth=1
+            BASE=origin/${{ github.base_ref }}
+          else
+            BASE=${{ github.sha }}^
+          fi
+          git diff --name-only $BASE ${{ github.sha }} > changed.txt
+
+      - name: Set outputs for frontend/backend
+        id: filter
+        run: |
+          FRONTEND=$(grep -E '^(Implementacao/moedas-ui/|\.github/workflows/frontend\.yml)' changed.txt || true)
+          BACKEND=$(grep -E '^(Implementacao/backEnd/moedaestudantil-api/|\.github/workflows/backend\.yml)' changed.txt || true)
+          echo "frontend=$([ -n "$FRONTEND" ] && echo true || echo false)" >> $GITHUB_OUTPUT
+          echo "backend=$([ -n "$BACKEND" ] && echo true || echo false)" >> $GITHUB_OUTPUT
+
+      - name: Check for open PR from branch to main
+        id: prcheck
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          BRANCH="${GITHUB_REF#refs/heads/}"
+          PR_EXISTS=$(gh pr list --base main --head "$BRANCH" --state open --json number --jq 'length')
+          if [ "$PR_EXISTS" -eq 0 ]; then
+            echo "pr=true" >> $GITHUB_OUTPUT
+          else
+            echo "pr=false" >> $GITHUB_OUTPUT
+          fi
+
+  frontend:
+    needs: decide
+    if: needs.decide.outputs.frontend == 'true'
+    uses: ./.github/workflows/frontend.yml
+
+  backend:
+    needs: decide
+    if: needs.decide.outputs.backend == 'true'
+    uses: ./.github/workflows/backend.yml
+
+  pr:
+    needs: decide
+    if: needs.decide.outputs.pr == 'true'
+    uses: ./.github/workflows/pr.yml
