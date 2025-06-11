@@ -10,7 +10,7 @@ jobs:
     outputs:
       frontend: ${{ steps.filter.outputs.frontend }}
       backend: ${{ steps.filter.outputs.backend }}
-      pr: ${{ steps.filter.outputs.pr }}
+      pr: ${{ steps.prcheck.outputs.pr }}
     steps:
       - uses: actions/checkout@v4
         with:
