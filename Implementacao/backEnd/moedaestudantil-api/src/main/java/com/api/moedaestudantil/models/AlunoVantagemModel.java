@@ -1,8 +1,15 @@
 package com.api.moedaestudantil.models;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.UUID;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "alunoVantagem")
@@ -13,10 +20,10 @@ public class AlunoVantagemModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     @ManyToOne
-    @JoinColumn(name = "aluno")
+    @JoinColumn(name = "aluno_id")
     private AlunoModel aluno;
     @ManyToOne
-    @JoinColumn(name = "vantagem")
+    @JoinColumn(name = "vantagem_id")
     private VantagemModel vantagem;
 
     public UUID getId() {
