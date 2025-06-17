@@ -22,9 +22,9 @@ jobs:
               echo "but doesn't match target branch"
               exit 1
             fi
-          elif [[ "$branch_name" =~ $qa_regex ]]; then
+          elif [[ "$branch_name" =~ $main_regex ]]; then
             echo "Branch name matches the second regex pattern."
-            if [[ "$target_branch" != "qa" ]]; then
+            if [[ "$target_branch" != "main" ]]; then
               echo "but doesn't match target branch"
               exit 1
             fi
