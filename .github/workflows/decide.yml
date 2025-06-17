@@ -41,7 +41,11 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
-          BRANCH="${GITHUB_REF#refs/heads/}"
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            BRANCH="${{ github.head_ref }}"
+          else
+            BRANCH="${{ github.ref_name }}"
+          fi
           PR_EXISTS=$(gh pr list --base main --head "$BRANCH" --state open --json number --jq 'length')
           if [ "$PR_EXISTS" -eq 0 ]; then
             echo "pr=true" >> $GITHUB_OUTPUT

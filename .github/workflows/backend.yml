@@ -44,6 +44,10 @@ jobs:
         working-directory: Implementacao/backEnd/moedaestudantil-api/src/main/resources
         run: cp application-prod.properties application.properties
 
-      - name: Package application
+      - name: Build JAR
         working-directory: Implementacao/backEnd/moedaestudantil-api
         run: mvn package -DskipTests
+
+      - name: Build Docker image
+        working-directory: Implementacao/backEnd/moedaestudantil-api
+        run: docker build -t moedaestudantil-api:latest .
