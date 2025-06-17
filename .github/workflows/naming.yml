@@ -10,21 +10,14 @@ jobs:
         run: |
           branch_name=${GITHUB_HEAD_REF}
           echo "pr branch name: $branch_name"
-          
+
           target_branch=${GITHUB_BASE_REF}
           echo "target branch: $target_branch"
-          dev_regex="^(bug|feature|code-cleanup)/JIRA-[0-9]+.*$"
-          main_regex="^(bug|feature|code-cleanup)/JIRA-[0-9]+.*$"
-          
+          dev_regex="^(bug|feature|code-cleanup)/[a-zA-Z0-9._-]+$"
+
           if [[ "$branch_name" =~ $dev_regex ]]; then
             echo "Branch name matches the first regex pattern."
-            if [[ "$target_branch" != "dev" ]]; then
-              echo "but doesn't match target branch"
-              exit 1
-            fi
-          elif [[ "$branch_name" =~ $main_regex ]]; then
-            echo "Branch name matches the second regex pattern."
-            if [[ "$target_branch" != "main" ]]; then
+            if [[ "$target_branch" != "dev" && "$target_branch" != "main" ]]; then
               echo "but doesn't match target branch"
               exit 1
             fi
