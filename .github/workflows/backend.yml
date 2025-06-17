@@ -6,7 +6,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: render
 
     steps:
       - name: Checkout code
