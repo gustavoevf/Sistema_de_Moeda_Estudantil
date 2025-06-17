@@ -1,10 +1,6 @@
 package com.api.moedaestudantil.dtos;
 
-import com.api.moedaestudantil.models.TransacaoModel;
-
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
-import java.util.Collection;
 
 public class ProfessorDto extends UsuarioDto {
     private static final long serialVersionUID = 1L;

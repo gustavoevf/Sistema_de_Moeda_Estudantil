@@ -1,13 +1,11 @@
 package com.api.moedaestudantil.dtos;
 
-import com.api.moedaestudantil.models.AlunoModel;
-import com.api.moedaestudantil.models.UsuarioModel;
-import com.api.moedaestudantil.models.VantagemModel;
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+
+import javax.validation.constraints.NotNull;
+
+import com.api.moedaestudantil.models.AlunoModel;
+import com.api.moedaestudantil.models.VantagemModel;
 
 public class AlunoVantagemDto implements Serializable {
     private static final long serialVersionUID = 1L;
