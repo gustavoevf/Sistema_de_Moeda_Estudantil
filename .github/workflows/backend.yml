@@ -39,6 +39,11 @@ jobs:
         working-directory: Implementacao/backEnd/moedaestudantil-api
         run: mvn checkstyle:check || echo "Checkstyle violations found"
 
+      - name: Use production properties on main branch
+        if: github.ref == 'refs/heads/main'
+        working-directory: Implementacao/backEnd/moedaestudantil-api/src/main/resources
+        run: cp application-prod.properties application.properties
+
       - name: Package application
         working-directory: Implementacao/backEnd/moedaestudantil-api
         run: mvn package -DskipTests
