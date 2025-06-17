@@ -7,6 +7,7 @@ flowchart TD
         C3 --> D1[Open Pull Request to main]
         D1 --> E1[Review & Merge PR]
         E1 --> F1[Push to main]
+        F1 --> B1
     end
 
     subgraph Backend CI
@@ -17,6 +18,9 @@ flowchart TD
         K1 --> L1[Run tests]
         L1 --> M1[Check code style]
         M1 --> N1[Package application]
+        N1 --> O1{Is branch main?}
+        O1 -- Yes --> P1[Deploy backend]
+        O1 -- No --> Q1[No deploy]
     end
 
     subgraph Frontend CI
@@ -34,3 +38,4 @@ flowchart TD
 
     style P2 fill:#006400,stroke:#333,stroke-width:2px,color:#fff
     style N1 fill:#006400,stroke:#333,stroke-width:2px,color:#fff
+    style P1 fill:#006400,stroke:#333,stroke-width:2px,color:#fff
