@@ -62,6 +62,7 @@ jobs:
     needs: decide
     if: needs.decide.outputs.backend == 'true'
     uses: ./.github/workflows/backend.yml
+    secrets: inherit
 
   pr:
     needs: decide
