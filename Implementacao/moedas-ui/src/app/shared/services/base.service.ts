@@ -1,8 +1,9 @@
 import { tap } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 export class BaseService {
-  baseUrl = 'http://localhost:8080';
+  baseUrl = environment.apiUrl;
 
   private httpHeaders = {
     headers: new HttpHeaders({
