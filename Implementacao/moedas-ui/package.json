@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --base-href /Sistema_de_Moeda_Estudantil/",
-    "deploy": "ng build --base-href /Sistema_de_Moeda_Estudantil/ && npx angular-cli-ghpages --dir=dist/moedas-ui",
+    "deploy": "ng build --configuration=production --base-href /Sistema_de_Moeda_Estudantil/ && npx angular-cli-ghpages --dir=dist/moedas-ui",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
