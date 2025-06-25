@@ -1,0 +1,41 @@
+flowchart TD
+    subgraph Ações Git
+        A1[Push ou PR para qualquer branch] --> B1[Executa decide.yml]
+        B1 -->|Arquivos backend alterados| C1[Dispara CI Backend: backend.yml]
+        B1 -->|Arquivos frontend alterados| C2[Dispara CI Frontend: frontend.yml]
+        B1 -->|Sem PR aberto para main| C3[Dispara Criação de PR: pr.yml]
+        C3 --> D1[Abrir Pull Request para main]
+        D1 --> E1[Revisar & Mesclar PR]
+        E1 --> F1[Push para main]
+        F1 --> B1
+    end
+
+    subgraph CI Backend
+        C1 --> H1[Checkout do código]
+        H1 --> I1[Configurar JDK 11]
+        I1 --> J1[Cache de pacotes Maven]
+        J1 --> K1[Build com Maven]
+        K1 --> L1[Executar testes]
+        L1 --> M1[Checar estilo de código]
+        M1 --> N1[Empacotar aplicação]
+        N1 --> O1{Branch é main?}
+        O1 -- Sim --> P1[Fazer deploy do backend]
+        O1 -- Não --> Q1[Não faz deploy]
+    end
+
+    subgraph CI Frontend
+        C2 --> H2[Checkout do código]
+        H2 --> I2[Configurar Node.js 18.x]
+        I2 --> J2[Instalar dependências]
+        J2 --> K2[Executar prettier-check]
+        K2 --> L2[Executar testes]
+        L2 --> M2[Build do app Angular]
+        M2 --> N2[Configurar usuário Git]
+        N2 --> O2{Branch é main?}
+        O2 -- Sim --> P2[Deploy no GitHub Pages]
+        O2 -- Não --> Q2[Não faz deploy]
+    end
+
+    style P2 fill:#006400,stroke:#333,stroke-width:2px,color:#fff
+    style N1 fill:#006400,stroke:#333,stroke-width:2px,color:#fff
+    style P1 fill:#006400,stroke:#333,stroke-width:2px,color:#fff
