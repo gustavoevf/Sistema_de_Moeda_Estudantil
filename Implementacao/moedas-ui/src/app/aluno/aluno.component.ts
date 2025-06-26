@@ -44,7 +44,7 @@ export class AlunoComponent implements OnInit {
     switch (this.action) {
       case 'create':
         this.alunoService
-          .saveAluno({ ...this.form.value, login: this.form.controls['nome'] })
+          .saveAluno({ ...this.form.value, login: this.form.controls['nome'].value })
           .then(_resp => {
             this.switchAction();
             this.getAlunos();
@@ -86,12 +86,30 @@ export class AlunoComponent implements OnInit {
       case 'view':
         this.title = 'Visualizar Aluno';
         if (aluno) this.alunoSelecionado = aluno;
+        this.form.patchValue({
+          nome: this.alunoSelecionado?.nome,
+          curso: this.alunoSelecionado?.curso,
+          instituicaoEnsino: this.alunoSelecionado?.instituicaoEnsino,
+          rg: this.alunoSelecionado?.rg,
+          cpf: this.alunoSelecionado?.cpf,
+          email: this.alunoSelecionado?.email,
+          endereco: this.alunoSelecionado?.endereco,
+        });
         this.showAction = true;
         break;
 
       case 'edit':
         this.title = 'Editar Aluno';
         if (aluno) this.alunoSelecionado = aluno;
+        this.form.patchValue({
+          nome: this.alunoSelecionado?.nome,
+          curso: this.alunoSelecionado?.curso,
+          instituicaoEnsino: this.alunoSelecionado?.instituicaoEnsino,
+          rg: this.alunoSelecionado?.rg,
+          cpf: this.alunoSelecionado?.cpf,
+          email: this.alunoSelecionado?.email,
+          endereco: this.alunoSelecionado?.endereco,
+        });
         this.showAction = true;
         break;
 
