@@ -44,7 +44,10 @@ export class AlunoComponent implements OnInit {
     switch (this.action) {
       case 'create':
         this.alunoService
-          .saveAluno({ ...this.form.value, login: this.form.controls['nome'].value })
+          .saveAluno({
+            ...this.form.value,
+            login: this.form.controls['nome'].value,
+          })
           .then(_resp => {
             this.switchAction();
             this.getAlunos();
