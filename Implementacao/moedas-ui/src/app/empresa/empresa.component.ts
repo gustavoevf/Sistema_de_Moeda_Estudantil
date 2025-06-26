@@ -70,12 +70,20 @@ export class EmpresaComponent implements OnInit {
       case 'view':
         this.title = 'Visualizar Empresa';
         if (empresa) this.empresaSelecionada = empresa;
+        this.form.patchValue({
+          nome: this.empresaSelecionada.nome,
+          email: this.empresaSelecionada.email,
+        });
         this.showAction = true;
         break;
 
       case 'edit':
         this.title = 'Editar Empresa';
         if (empresa) this.empresaSelecionada = empresa;
+        this.form.patchValue({
+          nome: this.empresaSelecionada.nome,
+          email: this.empresaSelecionada.email,
+        });
         this.showAction = true;
         break;
 

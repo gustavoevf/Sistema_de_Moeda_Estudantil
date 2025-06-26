@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.less'],
 })
 export class HeaderComponent implements OnInit {
-  constructor() {}
+  constructor(private readonly router: Router) {}
 
   tipoUsuario: string = '';
   usuario: any;
@@ -22,7 +23,7 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.tipoUsuario = '';
-    window.location.href = '/login';
+    this.router.navigate(['login']);
     localStorage.clear();
   }
 }
